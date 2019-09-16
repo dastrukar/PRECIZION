@@ -1,0 +1,7 @@
+class SMan : ShotgunGuy replaces ShotgunGuy
+{
+Default
+  {
+  DropItem "SAmo";
+  }
+}

@@ -1,0 +1,174 @@
+//why dont more games have throwable ammo -dastrukar 2019
+class adrop : Actor
+{
+Default
+  {
+  }
+  
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("PAmmo");
+			stop;
+		Spawn2:
+			TNT1 A 0 A_SpawnItemEx("SAmmo");
+			stop;
+	}
+}
+
+class PAmo : Actor replaces Clip
+{
+Default
+  {
+  }
+  
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("PAmmo");
+			stop;
+		Spawn2:
+			TNT1 A 0 A_SpawnItemEx("Handgun");
+			stop;
+	}
+}
+class PAmmo : AItem
+{
+Default
+  {
+  Inventory.PickupMessage "Picked up a Clip.";
+  }
+  
+	States
+	{
+		Spawn:
+			CLIP A -1;
+			stop;
+			
+		Pickup:
+			TNT1 A 0 A_GiveAmo("ta", "PAmmo");
+			stop;
+	}
+}
+
+class SAmo : Actor replaces Shell
+{
+Default
+  {
+  }
+  
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("SAmmo");
+			stop;
+		Spawn2:
+			TNT1 A 0 A_SpawnItemEx("PShotgun");
+			stop;
+	}
+}
+class SAmmo : AItem
+{
+Default
+  {
+  Inventory.PickupMessage "Picked up a Shell.";
+  }
+  
+	States
+	{
+		Spawn:
+			SHEL A -1;
+			stop;
+			
+		Pickup:
+			TNT1 A 0 A_GiveAmo("ts", "SAmmo");
+			stop;
+	}
+}
+
+class BAmo : Actor replaces ClipBox
+{
+Default
+  {
+  }
+  
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("BAmmo");
+			stop;
+		Spawn2:
+			goto Spawn1;
+			//TNT1 A 0 A_SpawnItemEx("PChaingun");
+			stop;
+	}
+}
+class BAmmo : AItem
+{
+Default
+  {
+  Inventory.PickupMessage "Picked up a Box of Bullets.";
+  }
+  
+	States
+	{
+		Spawn:
+			AMMO A -1;
+			stop;
+			
+		Pickup:
+			TNT1 A 0 A_GiveAmo("tb", "BAmmo");
+			stop;
+	}
+}
+
+class BSAm : Actor replaces ShellBox
+{
+Default
+  {
+  }
+  
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("BSAmm");
+			stop;
+		Spawn2:
+			goto Spawn1;
+			//TNT1 A 0 A_SpawnItemEx("PChaingun");
+			stop;
+	}
+}
+class BSAmm : AItem
+{
+Default
+  {
+  Inventory.PickupMessage "Picked up a Box of Shells.";
+  }
+  
+	States
+	{
+		Spawn:
+			SBOX A -1;
+			stop;
+			
+		Pickup:
+			TNT1 A 0 A_GiveAmo("tc", "BSAmm");
+			stop;
+	}
+}

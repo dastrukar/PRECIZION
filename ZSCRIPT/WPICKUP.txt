@@ -1,0 +1,58 @@
+//used for weapon pickups
+
+class Handgun : GItem replaces Pistol
+{
+Default
+  {
+  Inventory.PickupMessage "Picked up the Handgun.";
+  }
+  
+	States
+	{
+		Spawn:
+			HNDG A -1;
+			stop;
+			
+		Pickup:
+			TNT1 A 0 A_GiveGun("pp","Handgun");
+			stop;
+	}
+}
+
+class PShotgun : GItem replaces Shotgun
+{
+Default
+  {
+  Inventory.PickupMessage "Picked up the Shotgun.";
+  }
+  
+	States
+	{
+		Spawn:
+			SHOT A -1;
+			stop;
+			
+		Pickup:
+			TNT1 A 0 A_GiveGun("sg","PShotgun");
+			stop;
+	}
+}
+
+class PChain : GItem replaces Chaingun
+{
+Default
+  {
+  Inventory.PickupMessage "Picked up the Chaingun.";
+  }
+  
+	States
+	{
+		Spawn:
+			MGUN A -1;
+			stop;
+			
+		Pickup:
+			TNT1 A 0 A_GiveGun("cg","PChain");
+			stop;
+	}		
+}

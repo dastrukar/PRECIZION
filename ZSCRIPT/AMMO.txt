@@ -1,0 +1,81 @@
+class punc : Ammo
+{
+Default
+  {
+  Inventory.Amount 1;
+  Inventory.MaxAmount 10;
+  }
+}
+
+//woo ammo replacements
+class PClip : Ammo
+{
+Default
+  {
+  Inventory.Amount 12;
+  Inventory.MaxAmount 12;
+  Inventory.Icon "CLIPA0";
+  }
+  
+	States
+	{
+		Spawn:
+			CLIP A -1;
+			stop;
+	}
+}
+class ta : Ammo //ta = throwable ammo
+{
+Default
+  {
+  Inventory.Icon "CLIPA0";
+  }
+}
+
+class PShell : Ammo
+{
+Default
+  {
+  Inventory.Amount 8;
+  Inventory.MaxAmount 8;
+  Inventory.Icon "SHELA0";
+  }
+  
+	States
+	{
+		Spawn:
+			SHEL A -1;
+			stop;
+	}
+}
+class ts : Ammo
+{
+Default
+  {
+  Inventory.Icon "SHELA0";
+  }
+}
+class tc : Ammo
+{
+Default
+  {
+  Inventory.Icon "SBOXA0";
+  }
+}
+
+class PBullet : Ammo
+{
+Default
+  {
+  Inventory.Amount 50;
+  Inventory.MaxAmount 50;
+  Inventory.Icon "AMMOA0";
+  }
+}
+class tb : Ammo
+{
+Default
+  {
+  Inventory.Icon "AMMOA0";
+  }
+}

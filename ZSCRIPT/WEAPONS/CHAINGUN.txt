@@ -1,0 +1,44 @@
+class cg : Gun
+{
+Default
+  {
+  Weapon.AmmoUse 1;
+  Weapon.AmmoGive 50;
+  Weapon.AmmoType "PBullet";
+  Obituary "%o got mowed down by %k's Chaingun.";
+  Decal "bhole";
+  }
+  
+	States
+	{
+		Ready:
+			CHGG A 1 A_WeaponReady();
+			loop;
+			
+		Deselect:
+			CHGG A 1 A_Lower(10);
+			loop;
+			
+		Select:
+			CHGG A 1 A_Raise(10);
+			loop;
+			
+		Fire:
+			CHGG A 0 A_PlaySound("weapons/chngun", CHAN_WEAPON);
+			CHGG A 3 A_FireBullets(4, 4, 1, 8, "BulletPuff");
+			CHGG A 0 A_PlaySound("weapons/chngun", CHAN_WEAPON);
+			CHGG B 3 A_FireBullets(4, 4, 1, 8, "BulletPuff");
+			CHGG B 0 A_ReFire();
+			goto Ready;
+			
+		Flash:
+			CHGF A 5 Bright A_Light(5);
+			goto LightDone;
+			CHGF B 5 Bright A_Light(5);
+			goto LightDone;
+			
+		Spawn:
+			MGUN A -1;
+			stop;
+   }
+}

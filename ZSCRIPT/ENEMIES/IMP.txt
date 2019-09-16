@@ -1,0 +1,7 @@
+class Imp : DoomImp replaces DoomImp
+{
+Default
+  {
+  DropItem "adrop";
+  }
+}

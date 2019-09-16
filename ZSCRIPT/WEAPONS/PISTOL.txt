@@ -1,0 +1,152 @@
+class pp : Gun //currently main weapon due to balancing issues
+{
+Default
+  {
+  Weapon.AmmoType "PClip";
+  Weapon.AmmoUse 0;
+  Weapon.AmmoGive 0;
+  Weapon.UpSound "weapons/pequip";
+  Decal "bhole";
+  Inventory.PickupMessage "Picked up the Handgun.";
+  Obituary "%o got shot by %k's pea shooter.";
+  +WEAPON.NOAUTOFIRE
+  }
+  
+  
+	States
+	{
+		Ready:
+			PISG A 1 A_WeaponReady();
+			loop;
+		
+		Select:
+			PISG A 1 A_Raise(10);
+			loop;
+		
+		DeSelect:
+			PISG A 1 A_Lower(10);
+			loop;
+			
+		Fire:
+			TNT1 A 0 A_JumpIfInventory("PClip", 1, "Fire1");
+		NFire:
+			PISG B 0 A_PlaySound("weapons/na", CHAN_WEAPON);
+			"####" B 1 A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH);
+			goto Ready;
+		Fire1:
+			PISG B 0 A_Quake(2, 2, 0, 32, "");
+			"####" B 0 A_FireBullets(2, 2, 1, 6, "BulletPuff");
+			"####" B 0 A_PlaySound("weapons/pfire", CHAN_WEAPON, 0.5);
+			"####" B 0 A_GunFlash();
+			"####" B 1 Offset(0, 40);
+			"####" B 1 Offset(0, 35);
+			"####" CD 2 A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH);
+			"####" B 1 A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH);
+			goto Ready;
+			
+		AltFire:
+			/*
+			TNT1 A 0 A_Quake(2, 2, 0, 32, "");
+			"####" "#" 0 A_ThrowGun("flyingp", "PClip");
+			PUNG A 1 Offset(20, 55);
+			"####" "#" 1 Offset(10, 45);
+			"####" "#" 1 Offset(0, 30);
+			"####" "#" 1 Offset(-5, 40);
+			"####" "#" 1 Offset(-10, 50);
+			TNT1 A 0 A_NoGun("pp");
+			stop;
+			*/ //kept for reasons
+			
+			TNT1 A 0;
+			TNT1 A 0 A_JumpIfInventory("ta", 1, "Throw1");
+			"####" "#" 0 A_JumpIfInventory("ts", 1, "Throw2");
+			"####" "#" 0 A_JumpIfInventory("tb", 1, "Throw3");
+			"####" "#" 0 A_JumpIfInventory("tc", 1, "Throw4");
+			"####" "#" 0 A_Print("No Clip/Shell to throw!", 1);
+			goto Ready;
+		Throw1:
+			TNT1 A 0 A_Quake(2, 2, 0, 32, "");
+			"####" "#" 0 A_ThrowGun("fclip", "ta");
+			PUNG A 1 Offset(20, 55);
+			"####" "#" 1 Offset(10, 45);
+			"####" "#" 1 Offset(0, 30);
+			"####" "#" 1 Offset(-5, 40);
+			"####" "#" 1 Offset(-10, 50);
+			"####" "#" 0 A_TakeInventory("Amo");
+			goto Ready;
+		Throw2:
+			TNT1 A 0 A_Quake(2, 2, 0, 32, "");
+			"####" "#" 0 A_ThrowGun("fshel", "ts");
+			PUNG A 1 Offset(20, 55);
+			"####" "#" 1 Offset(10, 45);
+			"####" "#" 1 Offset(0, 30);
+			"####" "#" 1 Offset(-5, 40);
+			"####" "#" 1 Offset(-10, 50);
+			"####" "#" 0 A_TakeInventory("Amo");
+			goto Ready;
+		Throw3:
+			TNT1 A 0 A_Quake(2, 2, 0, 32, "");
+			"####" "#" 0 A_ThrowGun("fammo", "tb");
+			PUNG A 1 Offset(20, 55);
+			"####" "#" 1 Offset(10, 45);
+			"####" "#" 1 Offset(0, 30);
+			"####" "#" 1 Offset(-5, 40);
+			"####" "#" 1 Offset(-10, 50);
+			"####" "#" 0 A_TakeInventory("Amo");
+			goto Ready;
+		Throw4:
+			TNT1 A 0 A_Quake(2, 2, 0, 32, "");
+			"####" "#" 0 A_ThrowGun("fbshl", "tc");
+			PUNG A 1 Offset(20, 55);
+			"####" "#" 1 Offset(10, 45);
+			"####" "#" 1 Offset(0, 30);
+			"####" "#" 1 Offset(-5, 40);
+			"####" "#" 1 Offset(-10, 50);
+			"####" "#" 0 A_TakeInventory("Amo");
+			goto Ready;
+			
+		Flash:
+			PISF A 2 Bright A_Light(5);
+			Goto LightDone;
+			
+		Spawn:
+			TNT1 A 0 A_SpawnItemEx("Handgun");
+			stop;
+	}
+}
+
+class fp : Weapon
+{
+Default
+  {
+  Weapon.AmmoUse 0;
+  Inventory.PickupMessage "das' favorite gun ;].";
+  +WEAPON.NOAUTOAIM
+  +WEAPON.AMMO_OPTIONAL
+  }
+  
+  
+	States
+	{
+		Ready:
+			TNT1 A 1 A_WeaponReady();
+			loop;
+		
+		Select:
+			TNT1 A 1 A_Raise();
+			loop;
+		
+		DeSelect:
+			TNT1 A 1 A_Lower();
+			loop;
+			
+		Fire:
+			TNT1 A 0 A_PlaySound("skeleton/swing", CHAN_WEAPON);
+			TNT1 A 0 A_FireProjectile("flyingp", frandom(-2,2), false, -3, 16, FPF_NOAUTOAIM, frandom(-2,2));
+			goto Ready;
+			
+		Spawn:
+			PIST A -1;
+			stop;
+	}
+}

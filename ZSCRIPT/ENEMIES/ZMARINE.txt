@@ -1,0 +1,42 @@
+class ZMarine : ZMan
+{
+Default
+  {
+  }
+  
+	States
+	{
+		Spawn:
+			UDM2 AB 10 A_Look();
+			loop;
+		See:
+			"####" AABBCCDD 4 A_Chase();
+			loop;
+		Missile:
+			"####" E 10 A_FaceTarget();
+			"####" F 8 A_PosAttack();
+			"####" E 8;
+			goto See;
+		Pain:
+			"####" G 3;
+			"####" G 3 A_Pain();
+			goto See;
+		Death:
+			"####" H 5;
+			"####" I 5 A_Scream();
+			"####" J 5 A_NoBlocking();
+			"####" K 5;
+			"####" L -1;
+			stop;
+		XDeath:
+			"####" H 5 A_XScream();
+			"####" O 5 A_NoBlocking();
+			"####" PQRSTU 5;
+			"####" V -1;
+			stop;
+		Raise:
+			"####" K 5;
+			"####" JIH 5;
+			goto See;
+	}
+}

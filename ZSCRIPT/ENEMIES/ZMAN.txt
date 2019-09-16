@@ -1,0 +1,27 @@
+class ZS : Actor replaces ZombieMan
+{
+Default
+  {
+  }
+  
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			"####" A 0 A_Jump(256, "S1", "S2");
+		S1:
+			"####" A 0 A_SpawnItemEx("ZMan");
+			stop;
+		S2:
+			"####" A 0 A_SpawnItemEx("ZMarine");
+			stop;
+	}
+}
+
+class ZMan : ZombieMan
+{
+Default
+  {
+  DropItem "PAmo";
+  }
+}
