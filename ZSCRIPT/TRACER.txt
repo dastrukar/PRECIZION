@@ -8,11 +8,13 @@ Default
   MissileHeight 10;
   Speed 300;
   Damage 0;
+  Scale 0.1;
+  Radius 0.1;
   }
 	States
 	{
 		Spawn:
-			PUFF A 1;
+			TNT1 A 1;
 			loop;
 		Death:
 			TNT1 A 1;
@@ -31,7 +33,7 @@ Default
   +NOCLIP;
   +FORCEXYBILLBOARD
   +NOBLOCKMAP;
-  +NOTIMEFREEZE;
+  -NOTIMEFREEZE;
   +NOTELEPORT;
   }
 	States

@@ -14,19 +14,24 @@ Default
 		Ready:
 			SMG1 A 1 A_WeaponReady();
 			loop;
+			
 		Select:
+			SMG1 A 0 Offset(-20, 50);
+		Select1:
 			SMG1 A 1 A_Raise(10);
 			loop;
+			
 		DeSelect:
 			SMG1 A 1 A_Lower(10);
 			loop;
+			
 		Fire:
 			SMG1 A 0 A_JumpIfInventory("SClip", 1, "Fire1");
 		NFire:
 			SMG1 A 1 A_PlaySound("weapons/na", CHAN_WEAPON);
 			goto Ready;
 		Fire1:
-			SMG1 A 2;
+			SMG1 A 1;
 			"####" B 0 A_Quake(2,3,0,32);
 			"####" "#" 0 Offset (0,40);
 			"####" "#" 0 A_PlaySound("weapons/smgfire", CHAN_WEAPON);
@@ -36,6 +41,7 @@ Default
 			"####" C 1 Bright Offset(0,35) A_Light2();
 			"####" A 2 A_ReFire();
 			goto Ready;
+			
 		AltFire:
 			TNT1 A 0 A_Quake(2, 2, 0, 32, "");
 			"####" "#" 0 A_ThrowGun("flyingp", "SClip");
@@ -46,6 +52,7 @@ Default
 			"####" "#" 1 Offset(-10, 50);
 			TNT1 A 0 A_NoGun("SMG");
 			stop;
+			
 		Spawn:
 			SBMG A -1;
 			stop;
