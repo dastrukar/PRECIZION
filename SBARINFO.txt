@@ -1,0 +1,150 @@
+
+Base Doom;
+LowerHealthCap false;
+
+Statusbar FullScreen, FullScreenOffsets
+{
+	//Health and Icon
+	DrawImage "GRAPHICS/habar4.png", 0, -24;
+	IfHealth 26
+	{
+	DrawNumber 3, CONFONT, WHITE, Health, Alignment(Center), 26, -17;
+	DrawBar "GRAPHICS/bar.png", "GRAPHICS/hpbg.png", Health(100), Horizontal, 13, -8;
+	}
+	else
+	{
+		DrawNumber 3, CONFONT, RED, Health, Alignment(Center), 26, -17;
+		DrawBar "GRAPHICS/rbar.png", "GRAPHICS/rhpbg.png", Health(100), Horizontal, 13, -8;
+	}
+	
+	//Armor
+	DrawNumber 3, CONFONT, WHITE, Armor, Alignment(Center), 74, -17;
+	DrawBar "GRAPHICS/bar.png", "GRAPHICS/hpbg.png", Armor(200), Horizontal, 60, -8;
+	
+	//Arms/weapons
+	DrawImage "GRAPHICS/ambar3.png", -70, -50; //drawimage ambar2, -70, 151;
+	
+	//pistol
+	InInventory pp
+	{
+		IsSelected pp
+		{
+			DrawImage "GRAPHICS/ambarss.png", -70, -28;
+			//DrawImage "ambarss", -70, 169;
+			DrawImage "GRAPHICS/HUDW/selected/Handgun.png", -31, -28;
+			InInventory not PClip, 1
+			{
+				DrawImage "GRAPHICS/HUDW/depleted/NHandgun.png", -31, -28;
+			}
+			
+			InInventory not PClip, 4
+			{
+				DrawNumber 3, CONFONT, RED, Ammo1, Alignment(Center), -24, -17;
+			}
+			else
+			{
+				DrawNumber 3, CONFONT, WHITE, Ammo1, Alignment(Center), -24, -17;
+			}
+		}
+		else
+		{
+			DrawImage "GRAPHICS/HUDW/AHandgun.png", -31, -28;
+			InInventory not PClip, 1
+			{
+				DrawImage "GRAPHICS/HUDW/depleted/NHandgun.png", -31, -28;
+			}
+		}
+	}
+	
+	//shotgun
+	InInventory sg
+	{
+		IsSelected sg
+		{
+			DrawImage "GRAPHICS/ambarss.png", -70, 151;
+			DrawImage "GRAPHICS/HUDW/selected/Shotgun.png", -66, 154;
+			InInventory not PShell, 1
+			{
+				DrawImage "GRAPHICS/HUDW/depleted/NShotgun.png", -66, 154;
+			}
+			
+			InInventory not PShell, 3
+			{
+				DrawNumber 3, CONFONT, RED, Ammo1, Alignment(Center), -24, -18;
+			}
+			else
+			{
+				DrawNumber 3, CONFONT, WHITE, Ammo1, Alignment(Center), -24, -18;
+			}
+		}
+		else
+		{
+			DrawImage "GRAPHICS/HUDW/AShotgun.png", -66, 154;
+			InInventory not PShell, 1
+			{
+				DrawImage "GRAPHICS/HUDW/depleted/NShotgun.png", -66, 154;
+			}
+		}
+	}
+	
+	
+	IsSelected punch
+	{
+		DrawNumber 3, CONFONT, WHITE, Ammo("punc"), Alignment(Center), -24, -18;
+	}
+	//Clip
+	InInventory ta, 1
+	{
+		IsSelected punch
+		{
+			DrawImage "GRAPHICS/ambarss.png", -70, 169;
+			DrawImage "GRAPHICS/HUDW/selected/Clip.png", -11, 174;
+		}
+		else
+		{
+			DrawImage "GRAPHICS/HUDW/AClip.png", -11, 174;
+		}
+	}
+	
+	//Shell
+	InInventory ts, 1
+	{
+		IsSelected punch
+		{
+			DrawImage "GRAPHICS/ambarss.png", -70, 169;
+			DrawImage "GRAPHICS/HUDW/selected/Shells.png", -17, 176;
+		}
+		else
+		{
+			DrawImage "GRAPHICS/HUDW/AShells.png", -17, 176;
+		}
+	}
+	
+	//BoxOfBullets
+	InInventory tb, 1
+	{
+		IsSelected punch
+		{
+			DrawImage "GRAPHICS/ambarss.png", -70, 169;
+			DrawImage "GRAPHICS/HUDW/selected/BoxOfBullets.png", -30, 171;
+		}
+		else
+		{
+			DrawImage "GRAPHICS/HUDW/ABoxOfBullets.png", -30, 171;
+		}
+	}
+	
+	//BoxOfShells
+	InInventory tc, 1
+	{
+		IsSelected punch
+		{
+			DrawImage "GRAPHICS/ambarss.png", -70, 169;
+			DrawImage "GRAPHICS/HUDW/selected/BoxOfShells.png", -34, 173;
+		}
+		else
+		{
+			DrawImage "GRAPHICS/HUDW/ABoxOfShells.png", -34, 173;
+		}
+	}
+}
