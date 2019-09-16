@@ -1,38 +1,53 @@
-ACTOR SMG : Weapon 31111
+class SMG : Gun
 {
 Default
   {
-  Inventory.PickupMessage "You got the SMG!"
-  Weapon.Slotnumber 4;
-  Weapon.Ammogive 30;
+  Inventory.PickupMessage "You got the SMG!";
+  Weapon.Ammogive 15;
   Weapon.Ammouse 1;
-  Weapon.Ammotype "Clip";
+  Weapon.Ammotype "SClip";
+  Decal "bhole";
+  Obituary "%o got pelted by %k's SMG.";
   }
 	States
 	{
-	Ready:
-		SMG1 A 1 A_WeaponReady();
-		loop;
-	Select:
-		SMG1 A 1 A_Raise(10);
-		loop;
-	DeSelect:
-		SMG1 A 1 A_Lower(10);
-		loop;
-	Fire:
-		SMG1 A 2;
-		SMG1 B 0 A_Quake(2,3,0,32);
-		SMG1 B 0 Offset (0,40);
-		SMG1 B 0 A_PlaySound("smg/fire",1);
-		SMG1 B 0 A_TakeInventory("smgloaded",1);
-		SMG1 B 0 A_SpawnItemEx("bcasing",0,0,8,Random(2,3),Random(2,3),Random(2,3));
-		SMG1 B 0 A_FireCustomMissile("pbullet",Frandom(-2,2),0,0,8,0,Frandom(-2,2));
-		SMG1 B 1 Bright A_Light1();
-		SMG1 C 1 Bright Offset(0,35) A_Light2();
-		SMG1 A 2 A_ReFire();
-		goto Ready;
-	Spawn:
-		SBMG A -1;
-		stop;
-  }
+		Ready:
+			SMG1 A 1 A_WeaponReady();
+			loop;
+		Select:
+			SMG1 A 1 A_Raise(10);
+			loop;
+		DeSelect:
+			SMG1 A 1 A_Lower(10);
+			loop;
+		Fire:
+			SMG1 A 0 A_JumpIfInventory("SClip", 1, "Fire1");
+		NFire:
+			SMG1 A 1 A_PlaySound("weapons/na", CHAN_WEAPON);
+			goto Ready;
+		Fire1:
+			SMG1 A 2;
+			"####" B 0 A_Quake(2,3,0,32);
+			"####" "#" 0 Offset (0,40);
+			"####" "#" 0 A_PlaySound("weapons/smgfire", CHAN_WEAPON);
+			"####" "#" 0 A_FireBullets(4,4,1,8);
+			"####" "#" 0 A_FireProjectile("bullettracer", 0, false);
+			"####" "#" 1 Bright A_Light1();
+			"####" C 1 Bright Offset(0,35) A_Light2();
+			"####" A 2 A_ReFire();
+			goto Ready;
+		AltFire:
+			TNT1 A 0 A_Quake(2, 2, 0, 32, "");
+			"####" "#" 0 A_ThrowGun("flyingp", "SClip");
+			PUNG A 1 Offset(20, 55);
+			"####" "#" 1 Offset(10, 45);
+			"####" "#" 1 Offset(0, 30);
+			"####" "#" 1 Offset(-5, 40);
+			"####" "#" 1 Offset(-10, 50);
+			TNT1 A 0 A_NoGun("SMG");
+			stop;
+		Spawn:
+			SBMG A -1;
+			stop;
+	}
 }
