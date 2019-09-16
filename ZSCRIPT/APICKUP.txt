@@ -34,7 +34,7 @@ Default
 			TNT1 A 0 A_SpawnItemEx("PAmmo");
 			stop;
 		Spawn2:
-			TNT1 A 0 A_SpawnItemEx("Handgun");
+			TNT1 A 0 A_SpawnItemEx("PSMG");
 			stop;
 	}
 }

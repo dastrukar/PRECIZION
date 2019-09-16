@@ -7,13 +7,17 @@ weapons/rpunch	rpunch2
 weapons/rspeak1	rspeak1
 weapons/rspeak2 rspeak2
 weapons/rspeak3 rspeak3
-$random	weapons/rspeak	{weapons/rspeak1	weapons/rspeak2	weapons/rspeak3}
+$random	weapons/rspeak	{weapons/rspeak1	weapons/rspeak2		weapons/rspeak3}
 
 //Plasma Pistol
 weapons/plasc	charge
 //Pistol
 weapons/pfire	pfire
 weapons/pequip	pdeploy
+//SMG
+weapons/smg1	smgfire0
+weapons/smg2	smgfire1
+$random weapons/smgfire	{weapons/smg1	weapons/smg2}
 //shotoguno
 weapons/sfire	sfire
 weapons/spump	sload

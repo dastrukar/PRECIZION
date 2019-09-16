@@ -1,4 +1,5 @@
-
+/* disabled due to being too buggy
+can be reenabled for testing purposes
 Base Doom;
 LowerHealthCap false;
 

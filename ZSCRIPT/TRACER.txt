@@ -1,0 +1,43 @@
+class bullettracer : FastProjectile
+{
+Default
+  {
+  Projectile;
+  +NOTIMEFREEZE;
+  MissileType "bt";
+  MissileHeight 10;
+  Speed 300;
+  Damage 0;
+  }
+	States
+	{
+		Spawn:
+			PUFF A 1;
+			loop;
+		Death:
+			TNT1 A 1;
+			stop;
+	}
+}
+
+
+class bt : Actor
+{
+Default
+  {
+  RenderStyle "Add";
+  Alpha 0.95;
+  Scale 1.50;
+  +NOCLIP;
+  +FORCEXYBILLBOARD
+  +NOBLOCKMAP;
+  +NOTIMEFREEZE;
+  +NOTELEPORT;
+  }
+	States
+	{
+		Spawn:
+			PUFF A 2;
+			stop;
+	}
+}

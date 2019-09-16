@@ -31,17 +31,18 @@ Default
 			TNT1 A 0 A_JumpIfInventory("PClip", 1, "Fire1");
 		NFire:
 			PISG B 0 A_PlaySound("weapons/na", CHAN_WEAPON);
-			"####" B 1 A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH);
+			"####" "#" 1 A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH);
 			goto Ready;
 		Fire1:
 			PISG B 0 A_Quake(2, 2, 0, 32, "");
-			"####" B 0 A_FireBullets(2, 2, 1, 6, "BulletPuff");
-			"####" B 0 A_PlaySound("weapons/pfire", CHAN_WEAPON, 0.5);
-			"####" B 0 A_GunFlash();
-			"####" B 1 Offset(0, 40);
-			"####" B 1 Offset(0, 35);
+			"####" "#" 0 A_FireBullets(2, 2, 1, 6, "BulletPuff");
+			"####" "#" 0 A_FireProjectile("bullettracer", 0, false);
+			"####" "#" 0 A_PlaySound("weapons/pfire", CHAN_WEAPON, 0.5);
+			"####" "#" 0 A_GunFlash();
+			"####" "#" 1 Offset(0, 40);
+			"####" "#" 1 Offset(0, 35);
 			"####" CD 2 A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH);
-			"####" B 1 A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH);
+			"####" "#" 1 A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH);
 			goto Ready;
 			
 		AltFire:

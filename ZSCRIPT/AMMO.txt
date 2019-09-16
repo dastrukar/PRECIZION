@@ -24,6 +24,17 @@ Default
 			stop;
 	}
 }
+
+class SClip : Ammo
+{
+Default
+	{
+	Inventory.Amount 15;
+	Inventory.MaxAmount 15;
+	Inventory.Icon "CLIPA0";
+	}
+}
+
 class ta : Ammo //ta = throwable ammo
 {
 Default
