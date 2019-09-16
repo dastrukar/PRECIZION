@@ -1,0 +1,5 @@
+GameInfo
+{
+	playerclasses = "rgw"
+	//StatusBar = "stbar"
+}

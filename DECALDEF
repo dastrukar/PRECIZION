@@ -1,0 +1,11 @@
+//used for the bullet holes
+//bhole does not stand for butthole thank you very much
+Decal bhole
+{
+	Pic PUFFA0
+	x-Scale 0.50
+	y-Scale 0.50
+	LowerDecal bulletchip
+	Animator GoAway2
+	FullBright
+}
