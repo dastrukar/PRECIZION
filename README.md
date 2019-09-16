@@ -1,9 +1,9 @@
 # PRECIZION
 a dumb gzdoom mod about throwing guns that i made
+also the shotgun tracer is hilariously broken
 
 
-
-##Credits
+## Credits
 
 Inspired by [Combine_Kegan's Combined_Arms](https://forum.zdoom.org/viewtopic.php?f=43&t=51066)
 
