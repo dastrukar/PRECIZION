@@ -1,6 +1,0 @@
-make the throw more better
-add other guns
-make enemies drop the right weapons
-sort out the code
-make ammo an actual weapon
-make a proper working hud
