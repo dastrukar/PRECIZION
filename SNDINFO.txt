@@ -18,6 +18,8 @@ weapons/pequip	pdeploy
 weapons/smg1	smgfire0
 weapons/smg2	smgfire1
 $random weapons/smgfire	{weapons/smg1	weapons/smg2}
+weapons/smgfirea	smgfire
+weapons/smgdep	smgdep
 //shotoguno
 weapons/sfire	sfire
 weapons/spump	sload
