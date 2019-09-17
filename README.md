@@ -19,7 +19,7 @@ Doom Alpha Weapon Sprites ripped by Falcon Delta
 3.["Super Shotgun Zombie" sprite made by/taken from 'The Skulltag Team'](https://realm667.com/index.php/en/beastiary-mainmenu-136-69621/doom-style-mainmenu-105-73113/441-super-shotgun-zombie)
 
 --------------------------------------------------------------------------------
-Sounds that were ripped:
+## Sounds that were ripped:
 
 1."Pistol", "Shotgun", "SMG" sounds ripped/taken from 'Left 4 Dead 2'(by Valve Software)
 
