@@ -1,4 +1,4 @@
-class punc : Ammo
+class punc : Ammo //currently unused
 {
 Default
   {
@@ -25,7 +25,7 @@ Default
 	}
 }
 
-class SClip : Ammo
+class SClip : Ammo //smg ammo
 {
 Default
 	{
@@ -59,14 +59,22 @@ Default
 			stop;
 	}
 }
-class ts : Ammo
+class PSShel : PShell //used for SSG just in case of ammo conflict
+{
+Default
+  {
+  Inventory.Amount 2;
+  Inventory.MaxAmount 2;
+  }
+}
+class ts : Ammo //throwable shell
 {
 Default
   {
   Inventory.Icon "SHELA0";
   }
 }
-class tc : Ammo
+class tc : Ammo //throwable shell box
 {
 Default
   {
@@ -74,7 +82,7 @@ Default
   }
 }
 
-class PBullet : Ammo
+class PBullet : Ammo //chaingun ammo
 {
 Default
   {
@@ -83,7 +91,7 @@ Default
   Inventory.Icon "AMMOA0";
   }
 }
-class tb : Ammo
+class tb : Ammo //throwable ammo box
 {
 Default
   {

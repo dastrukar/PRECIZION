@@ -6,7 +6,7 @@ Default
   Weapon.Ammogive 15;
   Weapon.Ammouse 1;
   Weapon.Ammotype "SClip";
-  Weapon.UpSound "";
+  Weapon.UpSound "weapons/smgdep";
   Decal "bhole";
   Obituary "%o got pelted by %k's SMG.";
   }

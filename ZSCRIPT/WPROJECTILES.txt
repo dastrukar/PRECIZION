@@ -24,7 +24,7 @@ Default
 	}
 }
 
-class flyingp : Actor
+class flyingp : Actor //flying pistol
 {
 Default
   {
@@ -36,7 +36,6 @@ Default
   Scale 0.5;
   DeathSound "skeleton/melee";
   Obituary "%o tried to catch %k's pea shooter with their face.";
-  +NOEXTREMEDEATH
   +BLOODSPLATTER
   }
 
@@ -53,7 +52,11 @@ Default
 	
 }
 
-class flyings : flyingp
+class flysmg : flyingp //flying smg
+{
+}
+
+class flyings : flyingp //flying shotgun
 {
 Default
   {

@@ -1,10 +1,11 @@
-class fclip : flyingp
+class fclip : flyingp //flying clip
 {
 Default
   {
   Radius 2;
   Height 4;
   Damage 10;
+  +NOEXTREMEDEATH;
   }
   
 	States
@@ -21,7 +22,7 @@ Default
 	}
 }
 
-class fshel : fclip
+class fshel : fclip //flying shell
 {
 Default
   {
@@ -41,13 +42,14 @@ Default
 	}
 }
 
-class fammo : fclip
+class fammo : fclip //flying box of ammo
 {
 Default
   {
   Radius 3;
   Height 6;
   Damage 50;
+  -NOEXTREMEDEATH;
   }
   
 	States
@@ -65,13 +67,14 @@ Default
 	}
 }
 
-class fbshl : fclip
+class fbshl : fclip //flying box of shell
 {
 Default
   {
   Radius 3;
   Height 6;
   Damage 50;
+  -NOEXTREMEDEATH;
   }
   
 	States

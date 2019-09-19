@@ -76,6 +76,25 @@ Default
 			stop;
 	}
 }
+class SAmoo : Actor replaces Shell
+{
+Default
+  {
+  }
+  
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("SAmmo");
+			stop;
+		Spawn2:
+			TNT1 A 0 A_SpawnItemEx("SSG");
+			stop;
+	}
+}
 class SAmmo : AItem
 {
 Default

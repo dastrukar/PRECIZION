@@ -24,7 +24,7 @@ Default
 }
 
 
-class bt : Actor
+class bt : Actor //used for bullettracer's "missiletype"
 {
 Default
   {

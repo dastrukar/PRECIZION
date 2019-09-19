@@ -1,0 +1,57 @@
+//original code made by Rhoq, Aerial, Ghastly
+class SSGMan : ShotgunGuy
+{
+Default
+  {
+  Health 60;
+  Radius 20;
+  Height 56;
+  Mass 150;
+  Speed 6;
+  PainChance 150;
+  Obituary "%o ate lead from a super shotgun zombie.";
+  DropItem "SAmoo";
+  }
+	States
+	{
+		Spawn:
+			GPOS A 10 A_Look();
+			Loop;
+			
+		See:
+			GPOS AABBCCDD 4 A_Chase();
+			Loop;
+			
+		Missile:
+			GPOS E 10 A_FaceTarget();
+			GPOS F 8 BRIGHT A_CustomBulletAttack(11.2, 7.1, 20, 3, "Bulletpuff");
+			GPOS E 8;
+			Goto See;
+			
+		Pain:
+			GPOS G 3;
+			GPOS G 3 A_Pain();
+			Goto See;
+			
+		Death:
+			GPOS H 7;
+			GPOS I 7 A_Scream();
+			GPOS J 7 A_NoBlocking();
+			GPOS KLM 7;
+			GPOS N -1;
+			Stop;
+			
+		XDeath:
+			GPOS O 5;
+			GPOS P 5 A_XScream();
+			GPOS Q 5 A_NoBlocking();
+			GPOS RS 5;
+			GPOS T -1;
+			Stop;
+			
+		Raise:
+			GPOS NMLKJIH 5;
+			Goto See;
+			
+	}
+}

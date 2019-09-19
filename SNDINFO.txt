@@ -24,10 +24,19 @@ weapons/smgdep	smgdep
 weapons/sfire	sfire
 weapons/spump	sload
 weapons/sequip	sdeploy
+//SSG
+weapons/ssfire	supersf1
 //---------------------------------------
 //Projectile sounds
 //rocketfist
 projectile/rfist	rfly1
+//---------------------------------------
+//Enemies
+//ssgzombie
+SSGUNER/sight	DSGPOSIT
+SSGUNER/SSG 	DSSGGATK
+SSGUNER/death	DSGPODTH
+SSGUNER/idle	DSGPOACT
 //---------------------------------------
 //misc
 weapons/na	NOAMMO

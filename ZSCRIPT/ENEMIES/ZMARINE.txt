@@ -2,6 +2,7 @@ class ZMarine : ZMan
 {
 Default
   {
+  Health 30;
   }
   
 	States

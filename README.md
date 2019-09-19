@@ -23,9 +23,11 @@ Doom Alpha Weapon Sprites ripped by Falcon Delta
 
 1."Pistol", "Shotgun", "SMG" sounds ripped/taken from 'Left 4 Dead 2'(by Valve Software)
 
-2."Chaingun" sounds ripped/taken from 'Quake 4'(by Raven Software and Id Software)
+2."Chaingun" sounds ripped/taken from 'Quake 4'(by Raven Software and id Software)
 
-3.skeleton punch and swing sounds ripped/taken from 'Doom 2'(by Id Software)
+3.skeleton punch and swing sounds ripped/taken from 'Doom 2'(by id Software)
 because doom 1 doesnt have skeleton sounds
+
+4.Grunt sounds ripped/taken from 'Quake'(by id Software)
 
 --------------------------------------------------------------------------------

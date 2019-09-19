@@ -16,7 +16,7 @@ Default
 }
 
 
-class fpstl : Actor
+class fpstl : Actor //pistol
 {
 Default
   {
@@ -38,7 +38,7 @@ Default
 	}
 }
 
-class dclip : fpstl
+class dclip : fpstl //clip
 {
 Default
   {
@@ -54,7 +54,7 @@ Default
 	}
 }
 
-class fshtg : fpstl
+class fshtg : fpstl //shotgun
 {
 Default
   {
@@ -69,7 +69,7 @@ Default
 			loop;
 	}
 }
-class fshell : fpstl
+class fshell : fpstl //shell
 {
 Default
   {
@@ -86,7 +86,7 @@ Default
 			loop;
 	}
 }
-class sfammo : fpstl
+class sfammo : fpstl //shell box thing
 {
 Default
   {
@@ -101,7 +101,7 @@ Default
 			loop;
 	}
 }
-class slammo : fpstl
+class slammo : fpstl //shell box cover thing
 {
 Default
   {
@@ -117,7 +117,7 @@ Default
 	}
 }
 
-class afammo : fpstl
+class afammo : fpstl //box of ammo
 {
 Default
   {
@@ -132,7 +132,7 @@ Default
 			loop;
 	}
 }
-class alammo : fpstl
+class alammo : fpstl //box of ammo lid
 {
 Default
   {
@@ -147,7 +147,7 @@ Default
 			loop;
 	}
 }
-class fbullet : fpstl
+class fbullet : fpstl //bullet casings
 {
 Default
   {
