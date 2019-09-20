@@ -78,3 +78,11 @@ Default
 			stop;
 	}
 }
+
+class flyssg : flyings //flying supershotgun (please add proper spinning sprite work thanks)
+{
+Default
+  {
+  Damage 80;
+  }
+}

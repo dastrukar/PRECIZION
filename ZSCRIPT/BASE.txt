@@ -12,6 +12,16 @@ class Gun : Weapon //used for most guns
 		A_TakeInventory(weap);
 		A_TakeInventory("agun");
 	}
+	
+	action void A_AllowThrow(bool allowshoot = false) //allows the use of alt-fire
+	{
+		if (allowshoot==true)
+		{
+			A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH);
+		} else {
+			A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH|WRF_NOPRIMARY);
+		}
+	}
 
 Default
   {
@@ -27,7 +37,7 @@ Default
 class GItem : CustomInventory //used for gun pickups
 {
 	int ctimer;
-	action void A_GiveGun(/*string weap, */string give, string item)
+	action void A_GiveGun(string give, string item)
 	{
 		A_GiveInventory("agun", 1);
 		A_GiveInventory(give, 1); //gives the item that you actually need

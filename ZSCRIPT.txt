@@ -40,7 +40,7 @@ Default
   Player.StartItem "agun", 1;*/
   //Player.WeaponSlot 1, "punch", "Chainsaw";
   Player.WeaponSlot 1, "pp";
-  Player.WeaponSlot 2, "fp", "sg", "SMG";
+  Player.WeaponSlot 2, "fp", "sg", "SMG", "SSG";
   Player.WeaponSlot 3, "";
   Player.WeaponSlot 4, "";
   Player.WeaponSlot 5, "";

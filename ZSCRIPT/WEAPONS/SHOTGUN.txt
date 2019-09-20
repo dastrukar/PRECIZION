@@ -33,7 +33,9 @@ Default
 		Fire:
 			SHTG A 0 A_JumpIfInventory("PShell", 1, "Fire1");
 		NFire:
-			SHTG A 1 A_PlaySound("weapons/na", CHAN_WEAPON);
+			SHTG A 0 A_PlaySound("weapons/na", CHAN_WEAPON);
+			SHTG A 1 Offset(0, 40) A_AllowThrow(true);
+			SHTG A 1 Offset(0, 35) A_AllowThrow(true);
 			goto Ready;
 		Fire1:
 			SHTG A 0 A_FireBullets (5.6, 0, 7, 8, "BulletPuff", 1, 0, "bullettracer", 4);
@@ -41,16 +43,16 @@ Default
 			"####" "#" 0 A_PlaySound("weapons/sfire", CHAN_WEAPON, 0.5);
 			"####" "#" 0 A_GunFlash();
 			"####" "#" 0 A_SetPitch(pitch - 1);
-			"####" "#" 1 Offset(0, 55) A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH|WRF_NOPRIMARY);
-			"####" "#" 1 Offset(0, 50) A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH|WRF_NOPRIMARY);
-			"####" "#" 1 Offset(0, 45) A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH|WRF_NOPRIMARY);
-			"####" "#" 1 Offset(0, 40) A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH|WRF_NOPRIMARY);
-			"####" "#" 1 Offset(0, 35) A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH|WRF_NOPRIMARY);
-			"####" BC 3 A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH|WRF_NOPRIMARY);
+			"####" "#" 1 Offset(0, 55) A_AllowThrow();
+			"####" "#" 1 Offset(0, 50) A_AllowThrow();
+			"####" "#" 1 Offset(0, 45) A_AllowThrow();
+			"####" "#" 1 Offset(0, 40) A_AllowThrow();
+			"####" "#" 1 Offset(0, 35) A_AllowThrow();
+			"####" BC 3 A_AllowThrow();
 			"####" D 0 A_PlaySound("weapons/spump", CHAN_5, 0.5);
-			"####" D 6 Offset(0, 45) A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH|WRF_NOPRIMARY);
-			"####" C 5 Offset(0, 55) A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH|WRF_NOPRIMARY);
-			"####" B 3 A_WeaponReady(WRF_NOBOB|WRF_NOSWITCH|WRF_NOPRIMARY);
+			"####" D 6 Offset(0, 45) A_AllowThrow();
+			"####" C 5 Offset(0, 55) A_AllowThrow();
+			"####" B 3 A_AllowThrow();
 			goto Ready;
 			
 		AltFire:

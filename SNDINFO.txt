@@ -25,7 +25,7 @@ weapons/sfire	sfire
 weapons/spump	sload
 weapons/sequip	sdeploy
 //SSG
-weapons/ssfire	supersf1
+weapons/ssfire	supersfr
 //---------------------------------------
 //Projectile sounds
 //rocketfist

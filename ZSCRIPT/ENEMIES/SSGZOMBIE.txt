@@ -23,9 +23,9 @@ Default
 			Loop;
 			
 		Missile:
-			GPOS E 10 A_FaceTarget();
-			GPOS F 8 BRIGHT A_CustomBulletAttack(11.2, 7.1, 20, 3, "Bulletpuff");
-			GPOS E 8;
+			GPOS E 14 A_FaceTarget();
+			GPOS F 14 BRIGHT A_CustomBulletAttack(11.2, 7.1, 10, random(1,5)*3, "Bulletpuff", 0, CBAF_NORANDOM);
+			GPOS E 14;
 			Goto See;
 			
 		Pain:
