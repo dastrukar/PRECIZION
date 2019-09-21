@@ -16,6 +16,7 @@
 #include "ZSCRIPT/ENEMIES/IMP.txt"
 #include "ZSCRIPT/ENEMIES/ZMARINE.txt"
 #include "ZSCRIPT/ENEMIES/SSGZOMBIE.txt"
+#include "ZSCRIPT/ENEMIES/PINKY.txt"
 //---------------------------------------
 //Other
 #include "ZSCRIPT/AMMO.txt"

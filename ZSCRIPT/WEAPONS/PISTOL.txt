@@ -37,7 +37,7 @@ Default
 			goto Ready;
 		Fire1:
 			PISG B 0 A_Quake(2, 2, 0, 32, "");
-			"####" "#" 0 A_FireBullets(2, 2, 1, 6, "BulletPuff", 1, 0, "bullettracer", 4);
+			"####" "#" 0 A_FireBullets(2, 2, 1, 8, "BulletPuff", 1, 0, "bullettracer", 4);
 			"####" "#" 0 A_PlaySound("weapons/pfire", CHAN_WEAPON, 0.5);
 			"####" "#" 0 A_SetPitch(pitch - 1);
 			"####" "#" 0 A_GunFlash();

@@ -69,6 +69,17 @@ Default
 			loop;
 	}
 }
+
+class fsshg : fshtg //SSG
+{
+	States
+	{
+		Spawn:
+			SSGN ABCD 1;
+			loop;
+	}
+}
+
 class fshell : fpstl //shell
 {
 Default

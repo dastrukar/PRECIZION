@@ -24,7 +24,7 @@ Default
 			
 		Missile:
 			GPOS E 14 A_FaceTarget();
-			GPOS F 14 BRIGHT A_CustomBulletAttack(11.2, 7.1, 10, random(1,5)*3, "Bulletpuff", 0, CBAF_NORANDOM);
+			GPOS F 14 BRIGHT A_CustomBulletAttack(11.2, 7.1, 8, random(1,3)*3, "Bulletpuff", 0, CBAF_NORANDOM);
 			GPOS E 14;
 			Goto See;
 			

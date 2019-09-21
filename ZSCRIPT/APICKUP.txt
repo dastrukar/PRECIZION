@@ -57,7 +57,22 @@ Default
 	}
 }
 
-class SAmo : Actor replaces Shell
+class SAmmoo : Actor replaces Shell
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("SAmo");
+			stop;
+		Spawn2:
+			TNT1 A 0 A_SpawnItemEx("SAmoo");
+			stop;
+	}
+}
+class SAmo : Actor
 {
 Default
   {
@@ -76,7 +91,7 @@ Default
 			stop;
 	}
 }
-class SAmoo : Actor replaces Shell
+class SAmoo : Actor
 {
 Default
   {
@@ -168,8 +183,7 @@ Default
 			TNT1 A 0 A_SpawnItemEx("BSAmm");
 			stop;
 		Spawn2:
-			goto Spawn1;
-			//TNT1 A 0 A_SpawnItemEx("PChaingun");
+			TNT1 A 0 A_SpawnItemEx("PChain");
 			stop;
 	}
 }
@@ -188,6 +202,28 @@ Default
 			
 		Pickup:
 			TNT1 A 0 A_GiveAmo("tc", "BSAmm");
+			stop;
+	}
+}
+
+class rdrop : Actor
+{
+	States
+	{
+	Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("PAmo");
+			stop;
+		Spawn2:
+			TNT1 A 0 A_SpawnItemEx("SAmmoo");
+			stop;
+		Spawn3:
+			TNT1 A 0 A_SpawnItemEx("");
+			stop;
+		Spawn4:
+			TNT1 A 0 A_SpawnItemEx("");
 			stop;
 	}
 }

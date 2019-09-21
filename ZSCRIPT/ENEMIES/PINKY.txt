@@ -1,0 +1,7 @@
+class Pinky : Demon replaces Demon
+{
+Default
+  {
+  DropItem "rdrop";
+  }
+}
