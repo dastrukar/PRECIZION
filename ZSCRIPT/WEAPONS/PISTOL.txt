@@ -1,4 +1,4 @@
-class pp : Gun //currently main weapon due to balancing issues
+class pp : Gun //changed to default weapon due to balancing issues
 {
 Default
   {
