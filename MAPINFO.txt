@@ -1,5 +1,5 @@
 GameInfo
 {
 	playerclasses = "rgw"
-	//StatusBar = "stbar"
+	StatusBarClass = "STBar"
 }

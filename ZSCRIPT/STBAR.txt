@@ -1,0 +1,121 @@
+class STBar : BaseStatusBar {
+HudFont textwrite;
+
+DynamicValueInterpolator healthinterpolate; //for bar
+DynamicValueInterpolator hpinterpolate; //for number
+DynamicValueInterpolator ohpinterpolate; //for overflowhp
+
+DynamicValueInterpolator armorinterpolate;
+DynamicValueInterpolator arminterpolate;
+DynamicValueInterpolator oarminterpolate;
+
+int overflowhealth;
+int overflowarmor;
+
+	override void Init() {
+		Super.Init();
+		SetSize(0, 320, 200); //must be set or game will crash
+		
+		Font fnt = "SIMPLEFONT";
+		textwrite = HudFont.Create(fnt, fnt.getCharWidth("0") + 1, true, 0, 0);
+		
+		healthinterpolate = DynamicValueInterpolator.Create(0, 0.25, 1, 1); // i have no idea what these values do
+		hpinterpolate = DynamicValueInterpolator.Create(0, 0.25, 1, 8);
+		ohpinterpolate = DynamicValueInterpolator.Create(0, 0.25, 1, 8);
+		
+		armorinterpolate = DynamicValueInterpolator.Create(0, 0.25, 1, 1);
+		arminterpolate = DynamicValueInterpolator.Create(0, 0.25, 1, 8);
+		oarminterpolate = DynamicValueInterpolator.Create(0, 0.25, 1, 8);
+	}
+	
+	override void Draw(int state, double TicFrac) {
+		Super.Draw(state, TicFrac);
+
+			BeginHUD();
+			DrawFullScreenStuff();
+	}
+	
+	override void Tick() {
+		Super.Tick();
+		
+		overflowhealth = CPlayer.Health - 100;
+		
+		healthinterpolate.Update(CPlayer.Health);
+		hpinterpolate.Update(CPlayer.Health);
+		ohpinterpolate.Update(overflowhealth);
+		
+		let armor = CPlayer.mo.FindInventory("BasicArmor");
+		overflowarmor = Armor.Amount - 100;
+		
+		armorinterpolate.Update(Armor.Amount);
+		arminterpolate.Update(Armor.Amount);
+		oarminterpolate.Update(overflowarmor);
+	}
+	
+	override void NewGame() {
+		Super.NewGame();
+		
+		healthinterpolate.Reset(0);
+		hpinterpolate.Reset(0);
+		ohpinterpolate.Reset(0);
+		
+		armorinterpolate.Reset(0);
+		arminterpolate.Reset(0);
+		oarminterpolate.Reset(0);
+	}
+	
+	void DrawFullScreenStuff()	{
+		//for my convience
+		let armor = CPlayer.mo.FindInventory("BasicArmor");
+		vector2 hudimage = (87, -3);
+		vector2 hudgrid = (26, -6);
+		vector2 hudmugshot = (26, -16);
+		
+		vector2 hpbarpos = (121, -10);
+		vector2 hpnumpos = (76, -14);
+		vector2 ohpbarpos = (121, -8);
+		
+		vector2 armbarpos = (104, -21);
+		vector2 armnumpos = (76, -26);
+		vector2 oarmbarpos = (104, -24);
+		
+		int inthealth = healthinterpolate.getValue();
+		int inthp = hpinterpolate.getValue();
+		int intohp = ohpinterpolate.getValue();
+		
+		int intarmor = armorinterpolate.getValue();
+		int intarm = arminterpolate.getValue();
+		int intoarm = oarminterpolate.getValue();
+	
+		vector2 iconbox = (40, 20);
+		DrawImage("GRAPHICS/hudmain.png", hudimage);
+		DrawString(textwrite, FormatNumber(inthp, 0), hpnumpos, DI_TEXT_ALIGN_RIGHT);
+		DrawString(textwrite, FormatNumber(intarmor, 0), armnumpos, DI_TEXT_ALIGN_RIGHT);
+		
+		DrawBar("GRAPHICS/BARS/hudhpbarb.png", "GRAPHICS/BARS/hudhpbarc.png", inthealth, 100, hpbarpos, 0, 0);
+		DrawBar("GRAPHICS/BARS/hudhpbara.png", "GRAPHICS/BARS/hudhpbarc.png", inthp, 100, hpbarpos, 0, 0);
+		
+		if (CPlayer.Health > 100) {
+			DrawBar("GRAPHICS/BARS/hudhpbar2.png", "GRAPHICS/BARS/hudohpbarb.png", intohp, 100, ohpbarpos, 0, 0);
+		}
+		
+		//DrawBar("GRAPHICS/BARS/hudarmbarb.png", "GRAPHICS/BARS/hudarmbarb.png", intarmor, 100, armbarpos, 0, 0);
+		DrawBar("GRAPHICS/BARS/hudarmbara.png", "GRAPHICS/BARS/hudarmbarc.png", intarm, 100, armbarpos, 0, 0);
+		
+		if (Armor.Amount > 100) {
+			DrawBar("GRAPHICS/BARS/hudarmbara.png", "GRAPHICS/BARS/hudarmbarc.png", intoarm, 100, oarmbarpos, 0, 0);
+		}
+		
+		DrawImage("GRAPHICS/hudgrida.png", hudgrid);
+		DrawTexture(GetMugShot(5), hudmugshot);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+}

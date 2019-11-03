@@ -1,3 +1,5 @@
+version "4.0.0"
+
 //add some details later and sort out some shit
 //important stuff
 #include "ZSCRIPT/BASE.txt"
@@ -25,7 +27,7 @@
 #include "ZSCRIPT/WPICKUP.txt"
 #include "ZSCRIPT/APROJECTILES.txt"
 #include "ZSCRIPT/APICKUP.txt"
-#include "ZSCRIPT/STATUSBAR.txt"
+#include "ZSCRIPT/STBAR.txt"
 #include "ZSCRIPT/TRACER.txt"
 //---------------------------------------
 
@@ -63,3 +65,4 @@ Default
 class amo : agun
 {
 }
+

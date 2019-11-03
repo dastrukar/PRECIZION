@@ -1,11 +1,23 @@
 /* disabled due to being too buggy
-can be reenabled for testing purposes
+can be reenabled for testing purposes*
 Base Doom;
 LowerHealthCap false;
+InterpolateHealth true, 5;
+InterpolateArmor true, 5;
 
 Statusbar FullScreen, FullScreenOffsets
 {
-	//Health and Icon
+	DrawImage "hui1", 0, -38;
+	DrawNumber 3, SIMPLEFONT, WHITE, Health, Alignment(Right), 30 , -17;
+	DrawNumber 3, SIMPLEFONT, WHITE, Armor, Alignment(Right), 30 , -32;
+	DrawBar "GRAPHICS/BARS/hpbar.png", "GRAPHICS/BARS/hpbarb.png", Health(100), Horizontal, 32, -18;
+	DrawBar "GRAPHICS/BARS/armbar.png", "GRAPHICS/BARS/armbarb.png", Armor(100), Horizontal, 32, -29;
+	DrawBar "GRAPHICS/BARS/hpbar2.png", "GRAPHICS/BARS/hpbarb2.png", Armor(200), Horizontal, -10, -33;
+	
+	
+	//DrawBar "GRAPHICS/BARS/hpbar2.png", "GRAPHICS/BARS/blank.png", Health(200), Horizontal, 0, 5;
+	
+	/*Health and Icon
 	DrawImage "GRAPHICS/habar4.png", 0, -24;
 	IfHealth 26
 	{
@@ -147,5 +159,5 @@ Statusbar FullScreen, FullScreenOffsets
 		{
 			DrawImage "GRAPHICS/HUDW/ABoxOfShells.png", -34, 173;
 		}
-	}
+	}*/
 }
