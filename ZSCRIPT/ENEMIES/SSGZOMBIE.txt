@@ -24,7 +24,7 @@ Default
 			
 		Missile:
 			GPOS E 14 A_FaceTarget();
-			GPOS F 14 BRIGHT A_CustomBulletAttack(11.2, 7.1, 8, random(1,3)*3, "Bulletpuff", 0, CBAF_NORANDOM);
+			GPOS F 14 BRIGHT A_CustomBulletAttack(11.2, 7.1, 6, random(1,3)*3, "BulletPuff", 0, CBAF_NORANDOM);
 			GPOS E 14;
 			Goto See;
 			
@@ -34,6 +34,7 @@ Default
 			Goto See;
 			
 		Death:
+			TNT1 A 0 ACS_NamedExecuteWithResult("scoreint", s_ssgman);
 			GPOS H 7;
 			GPOS I 7 A_Scream();
 			GPOS J 7 A_NoBlocking();
@@ -42,6 +43,7 @@ Default
 			Stop;
 			
 		XDeath:
+			TNT1 A 0 ACS_NamedExecuteWithResult("scoreint", s_ssgman);
 			GPOS O 5;
 			GPOS P 5 A_XScream();
 			GPOS Q 5 A_NoBlocking();

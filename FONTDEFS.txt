@@ -1,4 +1,5 @@
-SIMPLEFONT	{
+SIMPLEFONT	
+{
 	0	num0
 	1	num1
 	2	num2

@@ -49,6 +49,7 @@ Default
   Inventory.Amount 1;
   Inventory.MaxAmount 1;
   Inventory.PickupSound "misc/w_pkup";
+  +DONTGIB;
   }
   
   override bool TryPickup(in out Actor toucher)
@@ -83,6 +84,7 @@ Default
   Inventory.Amount 1;
   Inventory.MaxAmount 1;
   Inventory.PickupSound "misc/i_pkup";
+  +DONTGIB;
   }
   
 	int atimer;
@@ -101,4 +103,15 @@ Default
 		else
 			return Super.TryPickup(toucher);
 	}
+}
+
+enum enemyscores
+{
+	s_zman = 20,
+	s_sman = 60,
+	s_zmarine = 40,
+	s_ssgman = 80,
+	s_pinky = 100,
+	s_imp = 40
+	
 }

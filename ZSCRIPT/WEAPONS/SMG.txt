@@ -3,10 +3,11 @@ class SMG : Gun
 Default
   {
   Inventory.PickupMessage "You got the SMG!";
-  Weapon.Ammogive 15;
+  Weapon.Ammogive 30;
   Weapon.Ammouse 1;
   Weapon.Ammotype "SClip";
   Weapon.UpSound "weapons/smgdep";
+  Inventory.Icon "SBMGA0";
   Decal "bhole";
   Obituary "%o got pelted by %k's SMG.";
   }
@@ -39,7 +40,7 @@ Default
 			"####" "#" 0 A_PlaySound("weapons/smgfirea", CHAN_WEAPON);
 			"####" "#" 0 A_FireBullets(4, 4, 1, 9, "BulletPuff", 1, 0, "bullettracer", 4);
 			"####" "#" 0 A_SetPitch(pitch - 1);
-			"####" "#" 1 Bright Offset(0, 40) {A_Light1(); A_AllowThrow();}
+			"####" B 1 Bright Offset(0, 40) {A_Light1(); A_AllowThrow();}
 			"####" C 1 Bright Offset(0, 35) {A_Light2(); A_AllowThrow();}
 			goto Ready;
 			

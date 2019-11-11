@@ -1,5 +1,6 @@
 class STBar : BaseStatusBar {
 HudFont textwrite;
+HudFont scorewrite;
 
 DynamicValueInterpolator healthinterpolate; //for bar
 DynamicValueInterpolator hpinterpolate; //for number
@@ -12,14 +13,20 @@ DynamicValueInterpolator oarminterpolate;
 int overflowhealth;
 int overflowarmor;
 
-	override void Init() {
+int scorenum;
+
+	override void Init() 
+	{
 		Super.Init();
 		SetSize(0, 320, 200); //must be set or game will crash
 		
 		Font fnt = "SIMPLEFONT";
 		textwrite = HudFont.Create(fnt, fnt.getCharWidth("0") + 1, true, 0, 0);
 		
-		healthinterpolate = DynamicValueInterpolator.Create(0, 0.25, 1, 1); // i have no idea what these values do
+		fnt = "SMALLFONT";
+		scorewrite = HUDFont.Create(fnt, fnt.GetCharWidth("0"), Mono_CellLeft, 1, 1);
+		
+		healthinterpolate = DynamicValueInterpolator.Create(0, 4, 1, 1); // i have no idea what these values do
 		hpinterpolate = DynamicValueInterpolator.Create(0, 0.25, 1, 8);
 		ohpinterpolate = DynamicValueInterpolator.Create(0, 0.25, 1, 8);
 		
@@ -28,14 +35,16 @@ int overflowarmor;
 		oarminterpolate = DynamicValueInterpolator.Create(0, 0.25, 1, 8);
 	}
 	
-	override void Draw(int state, double TicFrac) {
+	override void Draw(int state, double TicFrac) 
+	{
 		Super.Draw(state, TicFrac);
 
 			BeginHUD();
 			DrawFullScreenStuff();
 	}
 	
-	override void Tick() {
+	override void Tick() 
+	{
 		Super.Tick();
 		
 		overflowhealth = CPlayer.Health - 100;
@@ -43,6 +52,11 @@ int overflowarmor;
 		healthinterpolate.Update(CPlayer.Health);
 		hpinterpolate.Update(CPlayer.Health);
 		ohpinterpolate.Update(overflowhealth);
+		
+		if (healthinterpolate.getValue() < hpinterpolate.getValue()) 
+		{
+			healthinterpolate.Reset(hpinterpolate.getValue());
+		}
 		
 		let armor = CPlayer.mo.FindInventory("BasicArmor");
 		overflowarmor = Armor.Amount - 100;
@@ -52,7 +66,8 @@ int overflowarmor;
 		oarminterpolate.Update(overflowarmor);
 	}
 	
-	override void NewGame() {
+	override void NewGame() 
+	{
 		Super.NewGame();
 		
 		healthinterpolate.Reset(0);
@@ -64,12 +79,15 @@ int overflowarmor;
 		oarminterpolate.Reset(0);
 	}
 	
-	void DrawFullScreenStuff()	{
+	void DrawFullScreenStuff()	
+	{
 		//for my convience
 		let armor = CPlayer.mo.FindInventory("BasicArmor");
 		vector2 hudimage = (87, -3);
-		vector2 hudgrid = (26, -6);
+		vector2 hudgrid = (25, -6);
 		vector2 hudmugshot = (26, -16);
+		vector2 hudamm = (-68, -3);
+		vector2 hudscore = (-68, 20);
 		
 		vector2 hpbarpos = (121, -10);
 		vector2 hpnumpos = (76, -14);
@@ -79,6 +97,12 @@ int overflowarmor;
 		vector2 armnumpos = (76, -26);
 		vector2 oarmbarpos = (104, -24);
 		
+		vector2 ammbarpos = (-82, -14); //(-124, -21)
+		vector2 ammnumpos = (-25, -20);
+		
+		vector2 scorpos = (-9, 9);
+		
+		
 		int inthealth = healthinterpolate.getValue();
 		int inthp = hpinterpolate.getValue();
 		int intohp = ohpinterpolate.getValue();
@@ -86,7 +110,11 @@ int overflowarmor;
 		int intarmor = armorinterpolate.getValue();
 		int intarm = arminterpolate.getValue();
 		int intoarm = oarminterpolate.getValue();
-	
+		
+		DrawImage("GRAPHICS/scorehud.png", hudscore);
+		DrawString(textwrite, FormatNumber(CPlayer.mo.Score, 0), scorpos, DI_TEXT_ALIGN_RIGHT);
+		DrawString(textwrite, FormatNumber(GetAmount("combocnt"), 0), (76, 8), DI_TEXT_ALIGN_RIGHT);
+		
 		vector2 iconbox = (40, 20);
 		DrawImage("GRAPHICS/hudmain.png", hudimage);
 		DrawString(textwrite, FormatNumber(inthp, 0), hpnumpos, DI_TEXT_ALIGN_RIGHT);
@@ -95,14 +123,16 @@ int overflowarmor;
 		DrawBar("GRAPHICS/BARS/hudhpbarb.png", "GRAPHICS/BARS/hudhpbarc.png", inthealth, 100, hpbarpos, 0, 0);
 		DrawBar("GRAPHICS/BARS/hudhpbara.png", "GRAPHICS/BARS/hudhpbarc.png", inthp, 100, hpbarpos, 0, 0);
 		
-		if (CPlayer.Health > 100) {
+		if (CPlayer.Health > 100) 
+		{
 			DrawBar("GRAPHICS/BARS/hudhpbar2.png", "GRAPHICS/BARS/hudohpbarb.png", intohp, 100, ohpbarpos, 0, 0);
 		}
 		
 		//DrawBar("GRAPHICS/BARS/hudarmbarb.png", "GRAPHICS/BARS/hudarmbarb.png", intarmor, 100, armbarpos, 0, 0);
 		DrawBar("GRAPHICS/BARS/hudarmbara.png", "GRAPHICS/BARS/hudarmbarc.png", intarm, 100, armbarpos, 0, 0);
 		
-		if (Armor.Amount > 100) {
+		if (Armor.Amount > 100) 
+		{
 			DrawBar("GRAPHICS/BARS/hudarmbara.png", "GRAPHICS/BARS/hudarmbarc.png", intoarm, 100, oarmbarpos, 0, 0);
 		}
 		
@@ -111,11 +141,116 @@ int overflowarmor;
 		
 		
 		
+		DrawImage("GRAPHICS/ammhud.png", hudamm);
+		let camm = GetCurrentAmmo();
+		let ammname = Weapon(CPlayer.readyWeapon).Ammo1;
+		let namm = camm.Amount;
+		let ammmax = ammname.MaxAmount;
+		if (camm == null)
+		{
+			DrawString(textwrite, "-", ammnumpos, DI_TEXT_ALIGN_RIGHT);
+		} else {
+			DrawString(textwrite, FormatNumber(camm.Amount, 0), ammnumpos, DI_TEXT_ALIGN_RIGHT);
+			DrawBar("GRAPHICS/BARS/hudammbar.png", "GRAPHICS/BARS/hudammbarb.png", namm, ammmax, ammbarpos, 0, SHADER_REVERSE/*, DI_ITEM_OFFSETS*/);
+			DrawWeaponStuff();
+		}
+		
+	}
+	
+	void DrawWeaponStuff() 
+	{
+	
+		int startx = -28;
+		int starty = -34;
+		int xpos = startx, ypos = starty;
+		
+		vector2 curpos = (xpos, ypos);
+		vector2 weapicon = (startx - 3, starty - 4);
+		
+		let weap = CPlayer.readyWeapon; //this refers to the current weapon that is being used
+		
+		let wicon = getIcon(weap, 0);
+		let wiconsize = texman.getSize(wicon);
+		let wiconheight = texman.checkRealHeight(wicon);
+		
+		DrawString(textwrite, FormatNumber(wiconsize, 0), (80, -100), DI_TEXT_ALIGN_RIGHT);
+		DrawString(textwrite, FormatNumber(wiconheight, 0), (80, -90), DI_TEXT_ALIGN_RIGHT);
+		
+		//note: height/width applies to the inside height of the border because im lazy to fix
+		int height = wiconheight + 1 + 3;
+		int width = wiconsize + 3;
+		
+		xpos -= width;
+		ypos -= height;
+		
+		//draw bg
+		for (int i; i < height; i += 3) 
+		{
+			for (int ii; ii < width; ii += 3) 
+			{
+				curpos = (xpos, ypos);
+				DrawImage("GRAPHICS/grida.png", curpos);
+				xpos += 3;
+			}
+			ypos += 3;
+			xpos = startx - width;
+		}
 		
 		
+		DrawInventoryIcon(weap, weapicon, DI_ITEM_RIGHT_BOTTOM);
 		
+		curpos = (xpos = startx, ypos = starty);
 		
+		DrawString(textwrite, FormatNumber(startx, 0), (104, -100), DI_TEXT_ALIGN_RIGHT);
+		DrawString(textwrite, FormatNumber(starty, 0), (104, -80), DI_TEXT_ALIGN_RIGHT);
+		DrawString(textwrite, FormatNumber(height, 0), (80, -60), DI_TEXT_ALIGN_RIGHT);
+		DrawString(textwrite, FormatNumber(width, 0), (80, -50), DI_TEXT_ALIGN_RIGHT);
+		//start drawing border
+		//draw right side
+		DrawImage("GRAPHICS/corner4.png", curpos);
+		ypos -= 3;
 		
+		for (int i; i < height; i++) 
+		{
+			curpos = (xpos, ypos);
+			DrawImage("GRAPHICS/bar2.png", curpos);
+			ypos--;
+		}
+		curpos = (xpos, ypos);
+		DrawImage("GRAPHICS/corner2.png", curpos);
+		xpos -= 2;
 		
+		//draw top side
+		for (int i; i < width; i++) 
+		{
+			curpos = (xpos, ypos);
+			DrawImage("GRAPHICS/bar1.png", curpos);
+			xpos--;
+		}
+		xpos--;
+		curpos = (xpos, ypos);
+		DrawImage("GRAPHICS/corner1.png", curpos);
+		ypos++;
+		
+		//draw left side
+		for (int i; i < height; i++) 
+		{
+			curpos = (xpos, ypos);
+			DrawImage("GRAPHICS/bar2.png", curpos);
+			ypos++;
+		}
+		ypos += 2;
+		curpos = (xpos, ypos);
+		DrawImage("GRAPHICS/corner3.png", curpos);
+		xpos += 2;
+		
+		//draw bottom side
+		for (int i; i < width; i++) 
+		{
+			curpos = (xpos, ypos);
+			DrawImage("GRAPHICS/bar1.png", curpos);
+			xpos++;
+		}
+		//stop
 	}
 }

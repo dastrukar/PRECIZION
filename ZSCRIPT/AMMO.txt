@@ -12,8 +12,8 @@ class PClip : Ammo
 {
 Default
   {
-  Inventory.Amount 12;
-  Inventory.MaxAmount 12;
+  Inventory.Amount 999;
+  Inventory.MaxAmount 999;
   Inventory.Icon "CLIPA0";
   }
   
@@ -29,8 +29,8 @@ class SClip : Ammo //smg ammo
 {
 Default
 	{
-	Inventory.Amount 15;
-	Inventory.MaxAmount 15;
+	Inventory.Amount 30;
+	Inventory.MaxAmount 30;
 	Inventory.Icon "CLIPA0";
 	}
 }

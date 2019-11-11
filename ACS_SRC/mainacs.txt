@@ -1,0 +1,66 @@
+#library "mainacs"
+#include "zcommon.acs"
+
+int bfgup;
+bool istimeron;
+int playertid;
+int combocnt;
+
+script "scoreint" (int scoreamt)
+{
+	Log(s:"scoreint");
+	ACS_NamedTerminate("combotimer", 0);
+	ACS_NamedExecuteWithResult("givescore", scoreamt);
+}
+
+script "givescore" (int scoregot)
+{
+	Log(s:"givescore");
+	GiveActorInventory(0, "combocnt", 1);
+	combocnt++;
+	Log(s:"combo +1");
+	
+	//int curscore = GetActorProperty(0, APROP_SCORE);
+	//Log(s:"curscore = ", d:curscore);
+	int scoreresult = scoregot * ((combocnt + 1) / 2);
+	GiveActorInventory(0, "ScoreItem", scoreresult);
+	Log(s:"combocnt = ", d:combocnt);
+	Log(s:"score given = ", d:scoreresult);
+	ACS_NamedExecute("combotimer", 0);
+	ACS_NamedExecuteWithResult("addbfg", scoreresult);
+}
+
+script "combotimer" (void)
+{	
+	int combotime;
+	if (combocnt > 1)
+	{
+	combotime = 30 / ((1 + combocnt) / 2);
+	} else {
+	combotime = 30;
+	}
+	
+	for (int i; i < combotime; i++)
+	{
+		Delay(36);
+		Log(d:i);
+	}
+	TakeActorInventory(0, "combocnt", 99);
+	Log(s:"no more combo ;[");
+}
+
+script "addbfg" (int scoregot)
+{
+	bfgup += scoregot;
+	
+	if (bfgup >= 1000)
+	{
+		bfgup -= 1000;
+		Print(s:"you got bfg thing hooray");
+	}
+}
+
+script "statclear" ENTER
+{
+	TakeActorInventory(0, "combocnt", 99);
+}

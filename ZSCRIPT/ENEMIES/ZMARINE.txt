@@ -15,7 +15,12 @@ Default
 			loop;
 		Missile:
 			"####" E 10 A_FaceTarget();
-			"####" F 8 A_PosAttack();
+			"####" E 0 A_PlaySound ("weapons/smgfire");
+			"####" F 2 A_CustomBulletAttack (22.5, 0, 1, random(1,5) * 3, "BulletPuff", 0, CBAF_NORANDOM);
+			"####" E 1; 
+			"####" F 2 A_CustomBulletAttack (22.5, 0, 1, random(1,5) * 3, "BulletPuff", 0, CBAF_NORANDOM);
+			"####" E 1; 
+			"####" F 2 A_CustomBulletAttack (22.5, 0, 1, random(1,5) * 3, "BulletPuff", 0, CBAF_NORANDOM);
 			"####" E 8;
 			goto See;
 		Pain:
@@ -23,6 +28,7 @@ Default
 			"####" G 3 A_Pain();
 			goto See;
 		Death:
+			UDM2 A 0 ACS_NamedExecuteWithResult("scoreint", s_zmarine);
 			"####" H 5;
 			"####" I 5 A_Scream();
 			"####" J 5 A_NoBlocking();
@@ -30,6 +36,7 @@ Default
 			"####" L -1;
 			stop;
 		XDeath:
+			UDM2 A 0 ACS_NamedExecuteWithResult("scoreint", s_zmarine);
 			"####" H 5 A_XScream();
 			"####" O 5 A_NoBlocking();
 			"####" PQRSTU 5;

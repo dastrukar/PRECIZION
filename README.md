@@ -9,6 +9,8 @@ Inspired by [Combine_Kegan's Combined_Arms](https://forum.zdoom.org/viewtopic.ph
 
 Doom Alpha Weapon Sprites ripped by Falcon Delta
 
+smoke https://opengameart.org/content/smoke-aura
+
 --------------------------------------------------------------------------------
 ## Sprites taken from Realm667
 
@@ -29,6 +31,8 @@ Doom Alpha Weapon Sprites ripped by Falcon Delta
 because doom 1 doesnt have skeleton sounds
 
 4.Grunt sounds ripped/taken from 'Quake'(by id Software)
+
+5."SMG" sounds ripped/taken from F.E.A.R(by Monolith Productions)
 
 --------------------------------------------------------------------------------
 

@@ -29,6 +29,8 @@ version "4.0.0"
 #include "ZSCRIPT/APICKUP.txt"
 #include "ZSCRIPT/STBAR.txt"
 #include "ZSCRIPT/TRACER.txt"
+#include "ZSCRIPT/ENEMIES/BARREL.txt"
+#include "ZSCRIPT/SCORE.txt"
 //---------------------------------------
 
 
@@ -37,7 +39,7 @@ class rgw : DoomPlayer replaces DoomPlayer
 Default
   {
   Player.StartItem "pp";
-  Player.StartItem "PClip", 1;
+  Player.StartItem "PClip", 999;
   /*Player.StartItem "punch";
   Player.StartItem "agun", 1;*/
   //Player.WeaponSlot 1, "punch", "Chainsaw";

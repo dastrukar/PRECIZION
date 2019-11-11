@@ -1,0 +1,17 @@
+class combocnt : Inventory
+{
+Default
+  {
+  Inventory.MaxAmount 99;
+  +Inventory.UNTOSSABLE;
+  }
+}
+
+class combotimer : Inventory
+{
+Default
+  {
+  Inventory.MaxAmount 30;
+  +Inventory.UNTOSSABLE;
+  }
+}

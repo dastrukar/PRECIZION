@@ -6,6 +6,7 @@ Default
   Weapon.AmmoUse 0;
   Weapon.AmmoGive 0;
   Weapon.UpSound "weapons/pequip";
+  Inventory.Icon "PISTA0";
   Decal "bhole";
   Inventory.PickupMessage "Picked up the Handgun.";
   Obituary "%o got shot by %k's pea shooter.";

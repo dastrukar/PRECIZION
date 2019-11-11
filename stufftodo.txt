@@ -4,7 +4,8 @@ add some extra enemies
 make the hud actually work in zscript
 tidy the code up
 do something
-
+make a combo system
+make a scoring system
 
 
 note to self: use 'version "<version number here>" to not have broken features

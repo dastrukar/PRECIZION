@@ -17,7 +17,16 @@ weapons/pequip	pdeploy
 //SMG
 weapons/smg1	smgfire0
 weapons/smg2	smgfire1
-$random weapons/smgfire	{weapons/smg1	weapons/smg2}
+$random weapons/smgfire3	{weapons/smg1	weapons/smg2}
+
+weapons/smg01	sfire1
+weapons/smg02	sfire2
+weapons/smg03	sfire3
+weapons/smg04	sfire4
+weapons/smg05	sfire5
+$random weapons/smgfire		{weapons/smg01	weapons/smg02	weapons/smg03	weapons/smg04	weapons/smg05}
+weapons/smgfire1 sfire
+
 weapons/smgfirea	smgfire
 weapons/smgdep	smgdep
 //shotoguno
@@ -40,3 +49,7 @@ SSGUNER/idle	DSGPOACT
 //---------------------------------------
 //misc
 weapons/na	NOAMMO
+misc/explode1	explode1
+misc/explode2	explode2
+misc/explode3	explode3
+$random misc/explode	{misc/explode1 misc/explode2 misc/explode3}
