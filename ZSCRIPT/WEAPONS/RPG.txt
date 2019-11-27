@@ -1,0 +1,5 @@
+//bang boom
+class RPG : Gun
+{
+
+}

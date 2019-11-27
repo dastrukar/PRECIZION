@@ -13,3 +13,18 @@ SIMPLEFONT
 	-	numdash
 	DONTTRANSLATE
 }
+
+BFONT
+{
+	0 	bnum0
+	1 	bnum1
+	2 	bnum2
+	3 	bnum3
+	4 	bnum4
+	5 	bnum5
+	6 	bnum6
+	7 	bnum7
+	8 	bnum8
+	9 	bnum9
+	- 	bnum-
+}

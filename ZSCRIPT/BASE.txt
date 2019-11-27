@@ -5,6 +5,7 @@ class Gun : Weapon //used for most guns
 		A_PlaySound("skeleton/swing", CHAN_WEAPON);
 		A_FireProjectile(throw, 0, false, 0, 8, FPF_NOAUTOAIM);
 		A_TakeInventory(amm);
+		A_TakeInventory("ammcount", 100);
 	}	
 		
 	action void A_NoGun(string weap)	
@@ -72,10 +73,11 @@ Default
 
 class AItem : CustomInventory
 {
-	action void A_GiveAmo(/*string weap, */string give, string item)
+	action void A_GiveAmo(string give, string item, int ammoamt)
 	{
 		A_GiveInventory("amo", 1);
 		A_GiveInventory(give, 1);
+		A_GiveInventory("ammcount", ammoamt);
 		A_TakeInventory(item, 1);
 	}
 

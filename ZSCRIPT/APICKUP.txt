@@ -52,7 +52,7 @@ Default
 			stop;
 			
 		Pickup:
-			TNT1 A 0 A_GiveAmo("ta", "PAmmo");
+			TNT1 A 0 A_GiveAmo("ta", "PAmmo", 12);
 			stop;
 	}
 }
@@ -124,7 +124,7 @@ Default
 			stop;
 			
 		Pickup:
-			TNT1 A 0 A_GiveAmo("ts", "SAmmo");
+			TNT1 A 0 A_GiveAmo("ts", "SAmmo", 6);
 			stop;
 	}
 }
@@ -163,7 +163,7 @@ Default
 			stop;
 			
 		Pickup:
-			TNT1 A 0 A_GiveAmo("tb", "BAmmo");
+			TNT1 A 0 A_GiveAmo("tb", "BAmmo", 50);
 			stop;
 	}
 }
@@ -201,7 +201,7 @@ Default
 			stop;
 			
 		Pickup:
-			TNT1 A 0 A_GiveAmo("tc", "BSAmm");
+			TNT1 A 0 A_GiveAmo("tc", "BSAmm", 20);
 			stop;
 	}
 }

@@ -2,9 +2,10 @@
 #include "zcommon.acs"
 
 int bfgup;
-bool istimeron;
 int playertid;
 int combocnt;
+int bfgcnt;
+bool hasbfg;
 
 script "scoreint" (int scoreamt)
 {
@@ -53,10 +54,21 @@ script "addbfg" (int scoregot)
 {
 	bfgup += scoregot;
 	
-	if (bfgup >= 1000)
+	for (int i; i < 1; i++)
 	{
-		bfgup -= 1000;
-		Print(s:"you got bfg thing hooray");
+		if (bfgup >= 1000)
+		{
+			bfgup -= 1000;
+			Print(s:"you got bfg thing hooray");
+			GiveActorInventory(0, "bfgrounds", 1);
+			i = 0;
+			bfgcnt++;
+		}
+	}
+	
+	if (bfgcnt >= 10)
+	{
+		GiveActorInventory(0, "BFG9k", 1);
 	}
 }
 

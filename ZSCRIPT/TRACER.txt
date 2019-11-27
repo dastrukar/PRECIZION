@@ -37,39 +37,40 @@ Default
   +NOBLOCKMAP;
   -NOTIMEFREEZE;
   +NOTELEPORT;
+  +NOGRAVITY
   }
 	States
 	{
 		Spawn:
-			PUFF A 2;
-			stop;
-	}
-}
-
-
-class bount : Actor
-{
-Default
-  {
-  Projectile;
-  -NOGRAVITY;
-  +DOOMBOUNCE;
-  MissileType "bnt";
-  MissileHeight 0;
-  Speed 10;
-  Gravity 0.5;
-  Damage 0;
-  Scale 0.25;
-  BounceCount 5;
-  }
-  
-	States
-	{
-		Spawn:
-			TNT1 A 1 A_SpawnItemEx("bnt");
+			PUFF A 1 A_FadeOut(0.20, FTF_REMOVE);
 			loop;
 	}
 }
+
+class ebullet : bullettracer
+{
+Default
+  {
+  -NOTIMEFREEZE;
+  MissileType "ebt";
+  Speed 100;
+  DamageFunction random(1,5)*3;
+  }
+}
+class ebt : bt
+{
+Default
+  {
+  Scale 1;
+  }
+	States
+	{
+		Spawn:
+			PUFF A 1 A_FadeOut(0.20, FTF_REMOVE);
+			loop;
+	}
+}
+
 class bnt : bt
 {
 Default
@@ -86,12 +87,39 @@ class bulletsmok : BulletPuff
 	States
 	{
 		Spawn:
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("bount", random(-1, 1), random(-1, 1), random(-1, 1), frandom(-3, 3), frandom(-3, 3), frandom(-3, 3));
+			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("bspark", 0, 0, 0, frandom(-3, 3), frandom(-3, 3), frandom(-3, 3));
 			PUFF A 4 Bright;
 			PUFF BCD 4;
 			stop;
 		Melee:
 			PUFF CD 4;
 			Stop;
+	}
+}
+
+class bspark : Actor
+{
+Default
+  {
+  Projectile;
+  RenderStyle "Add";
+  Alpha 0.5;
+  Scale 0.25;
+  BounceType "Doom";
+  BounceCount 4;
+  -NOGRAVITY;
+  +FORCEXYBILLBOARD;
+  }
+  
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+		RJump:
+			TNT1 A 0 A_Jump(256, 1, 2, 3, 4);
+			SPAK ABCD 0 A_Jump(256, "s");
+		s:
+			"----" A -1;
+			stop;
 	}
 }

@@ -1,12 +1,11 @@
 class STBar : BaseStatusBar {
+HudFont numwrite;
 HudFont textwrite;
 HudFont scorewrite;
 
-DynamicValueInterpolator healthinterpolate; //for bar
 DynamicValueInterpolator hpinterpolate; //for number
 DynamicValueInterpolator ohpinterpolate; //for overflowhp
 
-DynamicValueInterpolator armorinterpolate;
 DynamicValueInterpolator arminterpolate;
 DynamicValueInterpolator oarminterpolate;
 
@@ -26,11 +25,12 @@ int scorenum;
 		fnt = "SMALLFONT";
 		scorewrite = HUDFont.Create(fnt, fnt.GetCharWidth("0"), Mono_CellLeft, 1, 1);
 		
-		healthinterpolate = DynamicValueInterpolator.Create(0, 4, 1, 1); // i have no idea what these values do
+		fnt = "BFONT";
+		numwrite = HUDFont.Create(fnt, fnt.getCharWidth("0"), Mono_CellRight, 0, 0);
+		
 		hpinterpolate = DynamicValueInterpolator.Create(0, 0.25, 1, 8);
 		ohpinterpolate = DynamicValueInterpolator.Create(0, 0.25, 1, 8);
 		
-		armorinterpolate = DynamicValueInterpolator.Create(0, 0.25, 1, 1);
 		arminterpolate = DynamicValueInterpolator.Create(0, 0.25, 1, 8);
 		oarminterpolate = DynamicValueInterpolator.Create(0, 0.25, 1, 8);
 	}
@@ -49,19 +49,12 @@ int scorenum;
 		
 		overflowhealth = CPlayer.Health - 100;
 		
-		healthinterpolate.Update(CPlayer.Health);
 		hpinterpolate.Update(CPlayer.Health);
 		ohpinterpolate.Update(overflowhealth);
-		
-		if (healthinterpolate.getValue() < hpinterpolate.getValue()) 
-		{
-			healthinterpolate.Reset(hpinterpolate.getValue());
-		}
 		
 		let armor = CPlayer.mo.FindInventory("BasicArmor");
 		overflowarmor = Armor.Amount - 100;
 		
-		armorinterpolate.Update(Armor.Amount);
 		arminterpolate.Update(Armor.Amount);
 		oarminterpolate.Update(overflowarmor);
 	}
@@ -70,11 +63,9 @@ int scorenum;
 	{
 		Super.NewGame();
 		
-		healthinterpolate.Reset(0);
 		hpinterpolate.Reset(0);
 		ohpinterpolate.Reset(0);
 		
-		armorinterpolate.Reset(0);
 		arminterpolate.Reset(0);
 		oarminterpolate.Reset(0);
 	}
@@ -83,174 +74,95 @@ int scorenum;
 	{
 		//for my convience
 		let armor = CPlayer.mo.FindInventory("BasicArmor");
-		vector2 hudimage = (87, -3);
+		vector2 hudhp = (50, -3);
+		vector2 hudarm = (50, -30);
 		vector2 hudgrid = (25, -6);
 		vector2 hudmugshot = (26, -16);
-		vector2 hudamm = (-68, -3);
+		vector2 hudamm = (-50, -3);
 		vector2 hudscore = (-68, 20);
 		
-		vector2 hpbarpos = (121, -10);
-		vector2 hpnumpos = (76, -14);
+		vector2 hpbarpos = (60, -6);
+		vector2 hpnumpos = (79, -24);
 		vector2 ohpbarpos = (121, -8);
 		
-		vector2 armbarpos = (104, -21);
-		vector2 armnumpos = (76, -26);
+		vector2 armbarpos = (60, -33);
+		vector2 armnumpos = (79, -51);
 		vector2 oarmbarpos = (104, -24);
 		
-		vector2 ammbarpos = (-82, -14); //(-124, -21)
-		vector2 ammnumpos = (-25, -20);
+		vector2 ammnumpos = (-43, -20);
 		
 		vector2 scorpos = (-9, 9);
+		vector2 bfgready = (-68, -1);
+		vector2 bfgbar = (-68, -6);
 		
 		
-		int inthealth = healthinterpolate.getValue();
 		int inthp = hpinterpolate.getValue();
 		int intohp = ohpinterpolate.getValue();
 		
-		int intarmor = armorinterpolate.getValue();
 		int intarm = arminterpolate.getValue();
 		int intoarm = oarminterpolate.getValue();
 		
+		//score
 		DrawImage("GRAPHICS/scorehud.png", hudscore);
 		DrawString(textwrite, FormatNumber(CPlayer.mo.Score, 0), scorpos, DI_TEXT_ALIGN_RIGHT);
 		DrawString(textwrite, FormatNumber(GetAmount("combocnt"), 0), (76, 8), DI_TEXT_ALIGN_RIGHT);
 		
 		vector2 iconbox = (40, 20);
-		DrawImage("GRAPHICS/hudmain.png", hudimage);
-		DrawString(textwrite, FormatNumber(inthp, 0), hpnumpos, DI_TEXT_ALIGN_RIGHT);
-		DrawString(textwrite, FormatNumber(intarmor, 0), armnumpos, DI_TEXT_ALIGN_RIGHT);
+		//health and armor number
+		DrawImage("GRAPHICS/nhud/hpm.png", hudhp);
+		DrawImage("GRAPHICS/nhud/armm.png", hudarm);
+		DrawString(numwrite, FormatNumber(inthp, 3), hpnumpos, DI_TEXT_ALIGN_RIGHT|DI_NOSHADOW);
+		DrawString(numwrite, FormatNumber(intarm, 3), armnumpos, DI_TEXT_ALIGN_RIGHT);
 		
-		DrawBar("GRAPHICS/BARS/hudhpbarb.png", "GRAPHICS/BARS/hudhpbarc.png", inthealth, 100, hpbarpos, 0, 0);
-		DrawBar("GRAPHICS/BARS/hudhpbara.png", "GRAPHICS/BARS/hudhpbarc.png", inthp, 100, hpbarpos, 0, 0);
+		//DrawBar("GRAPHICS/BARS/hudhpbarb.png", "GRAPHICS/BARS/hudhpbarc.png", inthealth, 100, hpbarpos, 0, 0);
+		//DrawBar("GRAPHICS/BARS/hudhpbara.png", "GRAPHICS/BARS/hudhpbarc.png", inthp, 100, hpbarpos, 0, 0);
 		
-		if (CPlayer.Health > 100) 
+		//draw hp bar
+		if (inthp > 50)
 		{
-			DrawBar("GRAPHICS/BARS/hudhpbar2.png", "GRAPHICS/BARS/hudohpbarb.png", intohp, 100, ohpbarpos, 0, 0);
-		}
-		
-		//DrawBar("GRAPHICS/BARS/hudarmbarb.png", "GRAPHICS/BARS/hudarmbarb.png", intarmor, 100, armbarpos, 0, 0);
-		DrawBar("GRAPHICS/BARS/hudarmbara.png", "GRAPHICS/BARS/hudarmbarc.png", intarm, 100, armbarpos, 0, 0);
-		
-		if (Armor.Amount > 100) 
+			DrawBar("GRAPHICS/NHUD/hpb1.png", "GRAPHICS/NHUD/baseb.png", inthp, 100, hpbarpos, 0, 0);
+		} else 
+		if (inthp > 25)
 		{
-			DrawBar("GRAPHICS/BARS/hudarmbara.png", "GRAPHICS/BARS/hudarmbarc.png", intoarm, 100, oarmbarpos, 0, 0);
-		}
-		
-		DrawImage("GRAPHICS/hudgrida.png", hudgrid);
-		DrawTexture(GetMugShot(5), hudmugshot);
-		
-		
-		
-		DrawImage("GRAPHICS/ammhud.png", hudamm);
-		let camm = GetCurrentAmmo();
-		let ammname = Weapon(CPlayer.readyWeapon).Ammo1;
-		let namm = camm.Amount;
-		let ammmax = ammname.MaxAmount;
-		if (camm == null)
-		{
-			DrawString(textwrite, "-", ammnumpos, DI_TEXT_ALIGN_RIGHT);
+			DrawBar("GRAPHICS/NHUD/hpbm.png", "GRAPHICS/NHUD/baseb.png", inthp, 100, hpbarpos, 0, 0);
 		} else {
-			DrawString(textwrite, FormatNumber(camm.Amount, 0), ammnumpos, DI_TEXT_ALIGN_RIGHT);
-			DrawBar("GRAPHICS/BARS/hudammbar.png", "GRAPHICS/BARS/hudammbarb.png", namm, ammmax, ammbarpos, 0, SHADER_REVERSE/*, DI_ITEM_OFFSETS*/);
-			DrawWeaponStuff();
+			DrawBar("GRAPHICS/NHUD/hpbl.png", "GRAPHICS/NHUD/baseb.png", inthp, 100, hpbarpos, 0, 0);
 		}
 		
-	}
-	
-	void DrawWeaponStuff() 
-	{
-	
-		int startx = -28;
-		int starty = -34;
-		int xpos = startx, ypos = starty;
+		//draw armor bar
+		DrawBar("GRAPHICS/NHUD/armb1.png", "GRAPHICS/NHUD/baseb.png", intarm, 200, armbarpos, 0, 0);
 		
-		vector2 curpos = (xpos, ypos);
-		vector2 weapicon = (startx - 3, starty - 4);
+		//-----------------------------------------------------------------------
+		//DrawWeaponStuff
 		
-		let weap = CPlayer.readyWeapon; //this refers to the current weapon that is being used
+		DrawImage("GRAPHICS/NHUD/wpnm.png", hudamm);
+		bool woverwrite = false;
+		let wpnname = CPlayer.readyWeapon;
+		Inventory ammotype1, ammotype2;
+		[ammotype1, ammotype2] = GetCurrentAmmo();
 		
-		let wicon = getIcon(weap, 0);
-		let wiconsize = texman.getSize(wicon);
-		let wiconheight = texman.checkRealHeight(wicon);
-		
-		DrawString(textwrite, FormatNumber(wiconsize, 0), (80, -100), DI_TEXT_ALIGN_RIGHT);
-		DrawString(textwrite, FormatNumber(wiconheight, 0), (80, -90), DI_TEXT_ALIGN_RIGHT);
-		
-		//note: height/width applies to the inside height of the border because im lazy to fix
-		int height = wiconheight + 1 + 3;
-		int width = wiconsize + 3;
-		
-		xpos -= width;
-		ypos -= height;
-		
-		//draw bg
-		for (int i; i < height; i += 3) 
+		if (ammotype2 != null)
 		{
-			for (int ii; ii < width; ii += 3) 
+			woverwrite = true;
+			if (CPlayer.mo.FindInventory("amo"))
 			{
-				curpos = (xpos, ypos);
-				DrawImage("GRAPHICS/grida.png", curpos);
-				xpos += 3;
+				DrawString(numwrite, FormatNumber(ammotype2.Amount, 0), ammnumpos, DI_TEXT_ALIGN_RIGHT);
+			} else {
+				DrawString(numwrite, "-", ammnumpos, DI_TEXT_ALIGN_RIGHT);
 			}
-			ypos += 3;
-			xpos = startx - width;
+		} else {
+			woverwrite = false;
 		}
 		
-		
-		DrawInventoryIcon(weap, weapicon, DI_ITEM_RIGHT_BOTTOM);
-		
-		curpos = (xpos = startx, ypos = starty);
-		
-		DrawString(textwrite, FormatNumber(startx, 0), (104, -100), DI_TEXT_ALIGN_RIGHT);
-		DrawString(textwrite, FormatNumber(starty, 0), (104, -80), DI_TEXT_ALIGN_RIGHT);
-		DrawString(textwrite, FormatNumber(height, 0), (80, -60), DI_TEXT_ALIGN_RIGHT);
-		DrawString(textwrite, FormatNumber(width, 0), (80, -50), DI_TEXT_ALIGN_RIGHT);
-		//start drawing border
-		//draw right side
-		DrawImage("GRAPHICS/corner4.png", curpos);
-		ypos -= 3;
-		
-		for (int i; i < height; i++) 
+		if (ammotype1 == null)
 		{
-			curpos = (xpos, ypos);
-			DrawImage("GRAPHICS/bar2.png", curpos);
-			ypos--;
-		}
-		curpos = (xpos, ypos);
-		DrawImage("GRAPHICS/corner2.png", curpos);
-		xpos -= 2;
-		
-		//draw top side
-		for (int i; i < width; i++) 
+			DrawString(numwrite, "-", ammnumpos, DI_TEXT_ALIGN_RIGHT);
+		} else 
+		if (woverwrite == false)
 		{
-			curpos = (xpos, ypos);
-			DrawImage("GRAPHICS/bar1.png", curpos);
-			xpos--;
+			DrawString(numwrite, FormatNumber(ammotype1.Amount, 0), ammnumpos, DI_TEXT_ALIGN_RIGHT);
 		}
-		xpos--;
-		curpos = (xpos, ypos);
-		DrawImage("GRAPHICS/corner1.png", curpos);
-		ypos++;
 		
-		//draw left side
-		for (int i; i < height; i++) 
-		{
-			curpos = (xpos, ypos);
-			DrawImage("GRAPHICS/bar2.png", curpos);
-			ypos++;
-		}
-		ypos += 2;
-		curpos = (xpos, ypos);
-		DrawImage("GRAPHICS/corner3.png", curpos);
-		xpos += 2;
-		
-		//draw bottom side
-		for (int i; i < width; i++) 
-		{
-			curpos = (xpos, ypos);
-			DrawImage("GRAPHICS/bar1.png", curpos);
-			xpos++;
-		}
-		//stop
+		//add bfg code here
 	}
 }

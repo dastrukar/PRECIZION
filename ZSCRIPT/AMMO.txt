@@ -1,12 +1,3 @@
-class punc : Ammo //currently unused
-{
-Default
-  {
-  Inventory.Amount 1;
-  Inventory.MaxAmount 10;
-  }
-}
-
 //woo ammo replacements
 class PClip : Ammo
 {
@@ -34,8 +25,7 @@ Default
 	Inventory.Icon "CLIPA0";
 	}
 }
-
-class ta : Ammo //ta = throwable ammo
+class ta : Ammo //ta = throwable ammo (clip)
 {
 Default
   {
@@ -96,5 +86,22 @@ class tb : Ammo //throwable ammo box
 Default
   {
   Inventory.Icon "AMMOA0";
+  }
+}
+
+class bfgrounds : Ammo
+{
+Default
+  {
+  Inventory.MaxAmount 10;
+  }
+}
+
+class ammcount : Ammo
+{
+Default
+  {
+  Inventory.Amount 1;
+  Inventory.MaxAmount 100;
   }
 }

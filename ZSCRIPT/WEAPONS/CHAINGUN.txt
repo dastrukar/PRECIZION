@@ -31,10 +31,11 @@ Default
 			"####" "#" 3;
 			goto Ready;
 		Fire1:
-			CHGG A 0 A_PlaySound("weapons/chngun", CHAN_WEAPON);
+			CHGG A 0 A_PlaySound("weapons/cgfire", CHAN_WEAPON);
 			"####" "#" 0 A_Quake(2, 3, 0, 32);
+			"####" "#" 0 A_GunFlash();
 			CHGG A 3 A_FireBullets(4, 4, 1, 10, "BulletPuff", 1, 0, "bullettracer", 4);
-			CHGG A 0 A_PlaySound("weapons/chngun", CHAN_WEAPON);
+			CHGG A 0 A_PlaySound("weapons/cgfire", CHAN_WEAPON);
 			"####" "#" 0 A_Quake(2, 3, 0, 32);
 			CHGG B 3 A_FireBullets(4, 4, 1, 10, "BulletPuff", 1, 0, "bullettracer", 4);
 			CHGG B 0 A_ReFire();
@@ -52,9 +53,8 @@ Default
 			stop;
 			
 		Flash:
-			CHGF A 5 Bright A_Light(5);
-			goto LightDone;
-			CHGF B 5 Bright A_Light(5);
+			CHGF A 3 Bright A_Light(5);
+			CHGF B 3 Bright A_Light(5);
 			goto LightDone;
 			
 		Spawn:

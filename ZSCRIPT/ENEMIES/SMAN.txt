@@ -26,7 +26,7 @@ Default
 		Missile:
 			SPOS E 10 A_FaceTarget();
 			SPOS F 0 bright A_PlaySound("shotguy/attack", CHAN_WEAPON);
-			SPOS F 10 bright A_CustomBulletAttack(22.5, 0, 3, random(1,5)*3, "BulletPuff", 0, CBAF_NORANDOM);
+			SPOS F 10 bright A_CustomBulletAttack (22.5, 0, 3, 0, "BulletPuff", 0, CBAF_NORANDOM, AAPTR_TARGET, "zmanblt");
 			SPOS E 10;
 			Goto See;
 		Death:

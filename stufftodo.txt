@@ -1,11 +1,21 @@
-make every weapon throwable
-make every ammo throwable
-add some extra enemies
-make the hud actually work in zscript
-tidy the code up
-do something
-make a combo system
-make a scoring system
+Currently working on:
+-make every weapon throwable
+
+
+
+High priority:
+-make every ammo throwable
+-make enemies drop the right things
+-balancingggg
+-make a combo system
+-make a scoring system
+
+Low priority:
+-add some extra enemies
+-add some cool particles
+-tidy up the hud
+-tidy the code up
+-do something
 
 
 note to self: use 'version "<version number here>" to not have broken features

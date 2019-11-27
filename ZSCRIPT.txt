@@ -5,12 +5,14 @@ version "4.0.0"
 #include "ZSCRIPT/BASE.txt"
 //---------------------------------------
 //Weapons
-#include "ZSCRIPT/WEAPONS/PUNCH.txt"
+//#include "ZSCRIPT/WEAPONS/PUNCH.txt"
 #include "ZSCRIPT/WEAPONS/PISTOL.txt"
 #include "ZSCRIPT/WEAPONS/SMG.txt"
 #include "ZSCRIPT/WEAPONS/SHOTGUN.txt"
 #include "ZSCRIPT/WEAPONS/SSG.txt"
 #include "ZSCRIPT/WEAPONS/CHAINGUN.txt"
+#include "ZSCRIPT/WEAPONS/RPG.txt"
+#include "ZSCRIPT/WEAPONS/BFG.txt"
 //---------------------------------------
 //Enemies
 #include "ZSCRIPT/ENEMIES/ZMAN.txt"
@@ -45,7 +47,7 @@ Default
   //Player.WeaponSlot 1, "punch", "Chainsaw";
   Player.WeaponSlot 1, "pp";
   Player.WeaponSlot 2, "fp", "sg", "SMG", "SSG", "cg";
-  Player.WeaponSlot 3, "";
+  Player.WeaponSlot 3, "BFG9k";
   Player.WeaponSlot 4, "";
   Player.WeaponSlot 5, "";
   Player.WeaponSlot 6, "";
@@ -68,3 +70,18 @@ class amo : agun
 {
 }
 
+class qwerty : Pistol
+{
+Default
+  {
+  Weapon.AmmoGive 999;
+  Weapon.AmmoType "am";
+  }
+}
+class am : Clip
+{
+Default
+  {
+  Inventory.MaxAmount 999;
+  }
+}
