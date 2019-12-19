@@ -70,8 +70,10 @@ class GItem : CustomInventory //used for gun pickups
 {
 int ctimer;
 string giveitem;
+string name;
 
 property Give : giveitem
+property Name : name
 
 	action void A_GiveGun(class<Inventory> give, class<Inventory> item)
 	{
@@ -108,7 +110,8 @@ Default
 	States
 	{
 		Pickup:
-			TNT1 A 0 A_GiveGun(invoker.giveitem, invoker);
+			TNT1 A 0 A_GiveGun(invoker.giveitem, invoker.name);
+			stop;
 	}
 }
 

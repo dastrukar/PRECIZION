@@ -6,6 +6,7 @@ Default
   {
   Inventory.PickupMessage "Picked up the Handgun.";
   GItem.Give "pp";
+  GItem.Name "Handgun";
   }
   
 	States
@@ -22,6 +23,7 @@ Default
   {
   Inventory.PickupMessage "Picked up the Shotgun.";
   GItem.Give "sg";
+  GItem.Name "PShotgun";
   }
   
 	States
@@ -38,6 +40,7 @@ Default
   {
   Inventory.PickupMessage "Picked up the SMG.";
   GItem.Give "SMG";
+  GItem.Name "PSMG";
   }
   
 	States
@@ -56,6 +59,7 @@ Default
   {
   Inventory.PickupMessage "Picked up the Chaingun.";
   GItem.Give "cg";
+  GItem.Name "PChain";
   }
   
 	States
@@ -72,6 +76,7 @@ Default
   {
   Inventory.PickupMessage "Picked up the SuperShotgun.";
   GItem.Give "SSG";
+  GItem.Name "PSSG";
   }
   
 	States
@@ -88,6 +93,7 @@ Default
   {
   Inventory.PickupMessage "Picked up the Rocket Launcher.";
   GItem.Give "RPG";
+  GItem.Name "PRPG";
   }
   
 	States
