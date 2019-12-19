@@ -32,7 +32,9 @@ because doom 1 doesnt have skeleton sounds
 
 4.Grunt sounds ripped/taken from 'Quake'(by id Software)
 
-5."SMG" sounds ripped/taken from F.E.A.R(by Monolith Productions)
+5."SMG" sounds ripped/taken from 'F.E.A.R'(by Monolith Productions)
+
+6."8Ball Launcher" sounds ripped/taken from 'Unreal'(by Epic Games)
 
 --------------------------------------------------------------------------------
 

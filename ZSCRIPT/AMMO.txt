@@ -25,13 +25,6 @@ Default
 	Inventory.Icon "CLIPA0";
 	}
 }
-class ta : Ammo //ta = throwable ammo (clip)
-{
-Default
-  {
-  Inventory.Icon "CLIPA0";
-  }
-}
 
 class PShell : Ammo
 {
@@ -57,20 +50,6 @@ Default
   Inventory.MaxAmount 2;
   }
 }
-class ts : Ammo //throwable shell
-{
-Default
-  {
-  Inventory.Icon "SHELA0";
-  }
-}
-class tc : Ammo //throwable shell box
-{
-Default
-  {
-  Inventory.Icon "SBOXA0";
-  }
-}
 
 class PBullet : Ammo //chaingun ammo
 {
@@ -81,11 +60,13 @@ Default
   Inventory.Icon "AMMOA0";
   }
 }
-class tb : Ammo //throwable ammo box
+
+class PRocket : Ammo //rocketlauncher ammo
 {
 Default
   {
-  Inventory.Icon "AMMOA0";
+  Inventory.Amount 6;
+  Inventory.MaxAmount 6;
   }
 }
 
@@ -93,7 +74,7 @@ class bfgrounds : Ammo
 {
 Default
   {
-  Inventory.MaxAmount 10;
+  Inventory.MaxAmount 100;
   }
 }
 

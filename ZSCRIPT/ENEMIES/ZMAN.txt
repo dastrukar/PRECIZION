@@ -24,6 +24,7 @@ Default
   {
   DropItem "PAmo";
   AttackSound "";
+  Decal "bhole";
   }
 
 	States
@@ -34,22 +35,6 @@ Default
 			POSS F 8 A_CustomBulletAttack (22.5, 0, 1, 0, "BulletPuff", 0, CBAF_NORANDOM, AAPTR_TARGET, "zmanblt");
 			POSS E 8;
 			goto See;
-		Death:
-			TNT1 A 0 ACS_NamedExecuteWithResult("scoreint", s_zman);
-			POSS H 5;
-			POSS I 5 A_Scream();
-			POSS J 5 A_NoBlocking();
-			POSS K 5;
-			POSS L -1;
-			Stop;
-		XDeath:
-			TNT1 A 0 ACS_NamedExecuteWithResult("scoreint", s_zman);
-			POSS M 5;
-			POSS N 5 A_XScream();
-			POSS O 5 A_NoBlocking();
-			POSS PQRST 5;
-			POSS U -1;
-			Stop;
 	}
 }
 class zmanblt : ebullet

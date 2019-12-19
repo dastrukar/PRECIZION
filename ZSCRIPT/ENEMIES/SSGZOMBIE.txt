@@ -11,6 +11,7 @@ Default
   PainChance 150;
   Obituary "%o ate lead from a super shotgun zombie.";
   DropItem "SAmoo";
+  Decal "bhole";
   }
 	States
 	{
@@ -34,7 +35,6 @@ Default
 			Goto See;
 			
 		Death:
-			TNT1 A 0 ACS_NamedExecuteWithResult("scoreint", s_ssgman);
 			GPOS H 7;
 			GPOS I 7 A_Scream();
 			GPOS J 7 A_NoBlocking();
@@ -43,7 +43,6 @@ Default
 			Stop;
 			
 		XDeath:
-			TNT1 A 0 ACS_NamedExecuteWithResult("scoreint", s_ssgman);
 			GPOS O 5;
 			GPOS P 5 A_XScream();
 			GPOS Q 5 A_NoBlocking();

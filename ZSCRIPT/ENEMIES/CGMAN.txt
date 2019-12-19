@@ -1,0 +1,15 @@
+class CGMan : ChainGunGuy replaces ChainGunGuy
+{
+Default
+  {
+  Decal "bhole";
+  }
+	States
+	{
+		Missile:
+			CPOS E 10 A_FaceTarget();
+			CPOS FE 4 Bright {A_PlaySound("chainguy/attack"); A_CustomBulletAttack (22.5, 0, 1, 0, "BulletPuff", 0, CBAF_NORANDOM, AAPTR_TARGET, "zmanblt");}
+			CPOS F 1 A_CPosRefire();
+			Goto Missile+1;
+	}
+}

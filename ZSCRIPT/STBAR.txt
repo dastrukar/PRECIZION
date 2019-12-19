@@ -79,7 +79,7 @@ int scorenum;
 		vector2 hudgrid = (25, -6);
 		vector2 hudmugshot = (26, -16);
 		vector2 hudamm = (-50, -3);
-		vector2 hudscore = (-68, 20);
+		vector2 hudlvl = (-50, -30);
 		
 		vector2 hpbarpos = (60, -6);
 		vector2 hpnumpos = (79, -24);
@@ -90,10 +90,7 @@ int scorenum;
 		vector2 oarmbarpos = (104, -24);
 		
 		vector2 ammnumpos = (-43, -20);
-		
-		vector2 scorpos = (-9, 9);
-		vector2 bfgready = (-68, -1);
-		vector2 bfgbar = (-68, -6);
+		vector2 lvlbarpos = (-50, -34);
 		
 		
 		int inthp = hpinterpolate.getValue();
@@ -101,11 +98,6 @@ int scorenum;
 		
 		int intarm = arminterpolate.getValue();
 		int intoarm = oarminterpolate.getValue();
-		
-		//score
-		DrawImage("GRAPHICS/scorehud.png", hudscore);
-		DrawString(textwrite, FormatNumber(CPlayer.mo.Score, 0), scorpos, DI_TEXT_ALIGN_RIGHT);
-		DrawString(textwrite, FormatNumber(GetAmount("combocnt"), 0), (76, 8), DI_TEXT_ALIGN_RIGHT);
 		
 		vector2 iconbox = (40, 20);
 		//health and armor number
@@ -144,12 +136,7 @@ int scorenum;
 		if (ammotype2 != null)
 		{
 			woverwrite = true;
-			if (CPlayer.mo.FindInventory("amo"))
-			{
-				DrawString(numwrite, FormatNumber(ammotype2.Amount, 0), ammnumpos, DI_TEXT_ALIGN_RIGHT);
-			} else {
-				DrawString(numwrite, "-", ammnumpos, DI_TEXT_ALIGN_RIGHT);
-			}
+			DrawString(numwrite, FormatNumber(ammotype2.Amount, 0), ammnumpos, DI_TEXT_ALIGN_RIGHT);
 		} else {
 			woverwrite = false;
 		}
@@ -163,6 +150,18 @@ int scorenum;
 			DrawString(numwrite, FormatNumber(ammotype1.Amount, 0), ammnumpos, DI_TEXT_ALIGN_RIGHT);
 		}
 		
-		//add bfg code here
+		//-----------------------------------------------------------------------
+		//DrawLevelStuff
+		let level = GetAmount("lvl");
+		int scrap = GetAmount("Scrap") - 100 * (level - 1);
+		
+		DrawImage("GRAPHICS/NHUD/lvlm.png", hudlvl);
+		DrawBar("GRAPHICS/NHUD/lvlbar.png", "GRAPHICS/NHUD/lvlbare.png", scrap, 100, lvlbarpos, 0, SHADER_REVERSE);
+		
+		if (level == 1) { DrawImage("GRAPHICS/NHUD/lvl1.png", hudlvl); }
+		if (level == 2) { DrawImage("GRAPHICS/NHUD/lvl2.png", hudlvl); }
+		if (level == 3) { DrawImage("GRAPHICS/NHUD/lvl3.png", hudlvl); }
+		if (level == 4) { DrawImage("GRAPHICS/NHUD/lvl4.png", hudlvl); }
+		if (level == 5) { DrawImage("GRAPHICS/NHUD/lvl5.png", hudlvl); }
 	}
 }

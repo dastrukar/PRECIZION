@@ -5,13 +5,13 @@ version "4.0.0"
 #include "ZSCRIPT/BASE.txt"
 //---------------------------------------
 //Weapons
-//#include "ZSCRIPT/WEAPONS/PUNCH.txt"
 #include "ZSCRIPT/WEAPONS/PISTOL.txt"
 #include "ZSCRIPT/WEAPONS/SMG.txt"
 #include "ZSCRIPT/WEAPONS/SHOTGUN.txt"
 #include "ZSCRIPT/WEAPONS/SSG.txt"
 #include "ZSCRIPT/WEAPONS/CHAINGUN.txt"
 #include "ZSCRIPT/WEAPONS/RPG.txt"
+#include "ZSCRIPT/WEAPONS/PLASRIF.txt"
 #include "ZSCRIPT/WEAPONS/BFG.txt"
 //---------------------------------------
 //Enemies
@@ -21,18 +21,18 @@ version "4.0.0"
 #include "ZSCRIPT/ENEMIES/ZMARINE.txt"
 #include "ZSCRIPT/ENEMIES/SSGZOMBIE.txt"
 #include "ZSCRIPT/ENEMIES/PINKY.txt"
+#include "ZSCRIPT/ENEMIES/CGMAN.txt"
 //---------------------------------------
 //Other
 #include "ZSCRIPT/AMMO.txt"
 #include "ZSCRIPT/STUFF.txt"
 #include "ZSCRIPT/WPROJECTILES.txt"
 #include "ZSCRIPT/WPICKUP.txt"
-#include "ZSCRIPT/APROJECTILES.txt"
 #include "ZSCRIPT/APICKUP.txt"
+#include "ZSCRIPT/IPICKUP.txt"
 #include "ZSCRIPT/STBAR.txt"
 #include "ZSCRIPT/TRACER.txt"
 #include "ZSCRIPT/ENEMIES/BARREL.txt"
-#include "ZSCRIPT/SCORE.txt"
 //---------------------------------------
 
 
@@ -42,17 +42,40 @@ Default
   {
   Player.StartItem "pp";
   Player.StartItem "PClip", 999;
-  /*Player.StartItem "punch";
-  Player.StartItem "agun", 1;*/
-  //Player.WeaponSlot 1, "punch", "Chainsaw";
+  Player.StartItem "lvl", 1;
   Player.WeaponSlot 1, "pp";
-  Player.WeaponSlot 2, "fp", "sg", "SMG", "SSG", "cg";
+  Player.WeaponSlot 2, "fp", "sg", "SMG", "SSG", "cg", "RPG";
   Player.WeaponSlot 3, "BFG9k";
   Player.WeaponSlot 4, "";
   Player.WeaponSlot 5, "";
   Player.WeaponSlot 6, "";
   Player.WeaponSlot 7, "";
+  DamageFactor "casing", 0.0;
   }
+  
+	override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod, int flags, double angle)
+	{
+		int dmgpenalty = damage;
+		int armorsave = ACS_NamedExecuteWithResult("getarmor");
+		
+		if (mod == "casing") { dmgpenalty = 0; }
+		
+		if (CountInv("BasicArmor")) { dmgpenalty -= dmgpenalty * armorsave / 100;}
+		
+		TakeInventory("Scrap", dmgpenalty);
+		
+		return Super.DamageMobj(inflictor, source, damage, mod, flags, angle);	
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		
+		TakeInventory("paltcooldown", 1);
+		
+		//level up if player has certain amount of scrap
+		ACS_NamedExecute("chklvl");
+	}
 }
 
 class agun : Inventory //picked up when picking up a gun and makes the player not be able to pick up another gun until the current one is discarded
@@ -64,10 +87,6 @@ Default
   +INVENTORY.UNTOSSABLE;
   Inventory.PickupMessage "wait, you're not supposed to be able to find this...";
   }
-}
-
-class amo : agun
-{
 }
 
 class qwerty : Pistol
@@ -83,5 +102,13 @@ class am : Clip
 Default
   {
   Inventory.MaxAmount 999;
+  }
+}
+
+class lvl : Inventory
+{
+Default
+  {
+  Inventory.MaxAmount 5;
   }
 }

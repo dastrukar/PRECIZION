@@ -3,6 +3,7 @@ class ZMarine : ZMan
 Default
   {
   Health 30;
+  Decal "bhole";
   }
   
 	States
@@ -28,7 +29,7 @@ Default
 			"####" G 3 A_Pain();
 			goto See;
 		Death:
-			UDM2 A 0 ACS_NamedExecuteWithResult("scoreint", s_zmarine);
+			UDM2 A 0;
 			"####" H 5;
 			"####" I 5 A_Scream();
 			"####" J 5 A_NoBlocking();
@@ -36,7 +37,7 @@ Default
 			"####" L -1;
 			stop;
 		XDeath:
-			UDM2 A 0 ACS_NamedExecuteWithResult("scoreint", s_zmarine);
+			UDM2 A 0;
 			"####" H 5 A_XScream();
 			"####" O 5 A_NoBlocking();
 			"####" PQRSTU 5;

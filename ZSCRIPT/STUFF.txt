@@ -1,12 +1,4 @@
 //the "stuff" section aka i dont know where to put all these stuff
-class oof : HealthPickup
-{
-Default
-  {
-  Inventory.Amount -5;
-  }
-}
-
 class bpuff : BulletPuff
 {
 Default
@@ -15,12 +7,15 @@ Default
   }
 }
 
-
+//===============================================================
+// Spinning weapon props
+//-------------------------------------------
 class fpstl : Actor //pistol
 {
 Default
   {
   Projectile;
+  Health 1;
   Speed 30;
   Radius 3;
   Height 6;
@@ -34,22 +29,6 @@ Default
 	{
 		Spawn: //you spin me right round baby right round
 			HNDG ABCD 1;
-			loop;
-	}
-}
-
-class dclip : fpstl //clip
-{
-Default
-  {
-  Radius 2;
-  Height 4;
-  }
-  
-	States
-	{
-		Spawn:
-			NCLP ABCD 1;
 			loop;
 	}
 }
@@ -80,6 +59,26 @@ class fsshg : fshtg //SSG
 	}
 }
 
+class fcgun : fshtg //chaingun
+{
+Default
+  {
+  Radius 10;
+  Height 20;
+  }
+  
+	States
+	{
+		Spawn:
+			CGUN ABCD 1;
+			loop;
+	}
+}
+
+
+//===============================================================
+// Casings that deal damage
+//-------------------------------------------
 class fshell : fpstl //shell
 {
 Default
@@ -87,74 +86,14 @@ Default
   Radius 3;
   Height 6;
   Damage 10;
-  +NOEXTREMEDEATH
+  DamageType "casing";
+  +NOEXTREMEDEATH;
   }
   
 	States
 	{
 		Spawn:
 			SHLL ABCD 1;
-			loop;
-	}
-}
-class sfammo : fpstl //shell box thing
-{
-Default
-  {
-  Radius 3;
-  Height 6;
-  }
-  
-	States
-	{
-		Spawn:
-			BSHL ABCD 1;
-			loop;
-	}
-}
-class slammo : fpstl //shell box cover thing
-{
-Default
-  {
-  Radius 3;
-  Height 6;
-  }
-  
-	States
-	{
-		Spawn:
-			ESHL ABCD 1;
-			loop;
-	}
-}
-
-class afammo : fpstl //box of ammo's box
-{
-Default
-  {
-  Radius 3;
-  Height 6;
-  }
-  
-	States
-	{
-		Spawn:
-			EAMM ABCD 1;
-			loop;
-	}
-}
-class alammo : fpstl //box of ammo's lid
-{
-Default
-  {
-  Radius 2;
-  Height 4;
-  }
-  
-	States
-	{
-		Spawn:
-			LAMM ABCD 1;
 			loop;
 	}
 }
@@ -165,6 +104,8 @@ Default
   Radius 2;
   Height 4;
   Damage 5;
+  DamageType "casing";
+  +NOEXTREMEDEATH;
   }
   
 	States
@@ -175,6 +116,10 @@ Default
 	}
 }
 
+
+//===============================================================
+// etc.
+//-------------------------------------------
 class smok : Actor
 {
 Default

@@ -27,4 +27,16 @@ BFONT
 	8 	bnum8
 	9 	bnum9
 	- 	bnum-
+	L	bL
+	E	bE
+	V	bV
+	U	bU
+	P	bP
+	D	bD
+	O	bO
+	W	bW
+	N	bN
+	^	b^
+	|	bdown
+	DONTTRANSLATE
 }

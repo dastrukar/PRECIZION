@@ -1,14 +1,12 @@
 Currently working on:
--make every weapon throwable
+-make a leveling system
 
 
 
 High priority:
--make every ammo throwable
 -make enemies drop the right things
 -balancingggg
--make a combo system
--make a scoring system
+-make every weapon throwable
 
 Low priority:
 -add some extra enemies

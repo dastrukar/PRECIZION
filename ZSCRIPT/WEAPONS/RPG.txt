@@ -1,5 +1,61 @@
-//bang boom
+//bang boom it fires 8 rockets
 class RPG : Gun
 {
-
+Default
+  {
+  Weapon.AmmoType "PRocket";
+  Weapon.AmmoGive 6;
+  Weapon.AmmoUse 1;
+  Inventory.PickupMessage "Got the RPG.";
+  Gun.Name "RPG";
+  }
+  
+	States
+	{
+		Ready:
+			MISG A 1 A_WeaponReady();
+			loop;
+			
+		Select:
+			MISG A 0 Offset(-20, 50);
+		Select1:
+			MISG A 1 A_Raise(10);
+			loop;
+			
+		DeSelect:
+			MISG A 1 A_Lower(10);
+			loop;
+			
+		Fire:
+			MISG B 8 A_GunFlash();
+			MISG B 0 A_PlaySound("weapons/rpgfire", CHAN_WEAPON);
+			MISG B 0 A_Quake(6, 3, 0, 64, "");
+			MISG B 0 A_FireProjectile("rpgocket", -10, false, -4, 0);
+			MISG B 0 A_FireProjectile("rpgocket", 10, false, 4, 0);
+			MISG B 0 A_FireProjectile("rpgocket", -5, false, -2, 4);
+			MISG B 0 A_FireProjectile("rpgocket", 5, false, 2, 4);
+			MISG B 0 A_FireProjectile("rpgocket", -5, false, -2, -4);
+			MISG B 0 A_FireProjectile("rpgocket", 5, false, 2, -4);
+			MISG B 0 A_FireProjectile("rpgocket", 0, false, 0, 8);
+			MISG B 0 A_FireProjectile("rpgocket", 0, false, 0, -8);
+			MISG B 1 Offset(0, 50);
+			MISG B 2 Offset(0, 70);
+			MISG B 1 Offset(0, 65);
+			MISG B 1 Offset(0, 60);
+			MISG B 1 Offset(0, 55);
+			MISG B 1 Offset(0, 50);
+			MISG B 1 Offset(0, 45);
+			MISG B 1 Offset(0, 40);
+			MISG B 1 Offset(0, 35);
+			MISG B 1 Offset(0, 30);
+			MISG B 4;
+			MISG B 0 A_ReFire();
+			goto Ready;
+			
+		Flash:
+			MISF A 3 Bright A_Light1();
+			MISF B 4 Bright;
+			MISF CD 4 Bright A_Light2();
+			goto LightDone;
+	}
 }

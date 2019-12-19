@@ -1,78 +1,52 @@
 #library "mainacs"
 #include "zcommon.acs"
 
-int bfgup;
-int playertid;
-int combocnt;
-int bfgcnt;
-bool hasbfg;
 
-script "scoreint" (int scoreamt)
+int lv2 = 100;
+int lv3 = 200;
+int lv4 = 300;
+int lv5 = 400;
+
+
+script "levelup" (void)
 {
-	Log(s:"scoreint");
-	ACS_NamedTerminate("combotimer", 0);
-	ACS_NamedExecuteWithResult("givescore", scoreamt);
+	SetFont("BFONT");
+	HudMessage(s:"LEVEL UP ^"; HUDMSG_FADEOUT, 1, CR_WHITE, 0.5, 0.5, 270, 1.0);
+}
+script "leveldown" (void)
+{
+	SetFont("BFONT");
+	HudMessage(s:"LEVEL DOWN |"; HUDMSG_FADEOUT, 1, CR_WHITE, 0.5, 0.5, 270, 1.0);
 }
 
-script "givescore" (int scoregot)
+script "getarmor" (void)
 {
-	Log(s:"givescore");
-	GiveActorInventory(0, "combocnt", 1);
-	combocnt++;
-	Log(s:"combo +1");
-	
-	//int curscore = GetActorProperty(0, APROP_SCORE);
-	//Log(s:"curscore = ", d:curscore);
-	int scoreresult = scoregot * ((combocnt + 1) / 2);
-	GiveActorInventory(0, "ScoreItem", scoreresult);
-	Log(s:"combocnt = ", d:combocnt);
-	Log(s:"score given = ", d:scoreresult);
-	ACS_NamedExecute("combotimer", 0);
-	ACS_NamedExecuteWithResult("addbfg", scoreresult);
+	SetResultValue(GetArmorInfo(ARMORINFO_SAVEAMOUNT));
 }
 
-script "combotimer" (void)
-{	
-	int combotime;
-	if (combocnt > 1)
-	{
-	combotime = 30 / ((1 + combocnt) / 2);
-	} else {
-	combotime = 30;
-	}
+script "chklvl" (void)
+{
+	int lvl = CheckInventory("lvl");
+	int scrap = CheckInventory("Scrap");
 	
-	for (int i; i < combotime; i++)
-	{
-		Delay(36);
-		Log(d:i);
-	}
-	TakeActorInventory(0, "combocnt", 99);
-	Log(s:"no more combo ;[");
+	if (lvl == 1 && scrap >= lv2) { GiveInventory("lvl", 1); ACS_NamedExecute("levelup", 0); }
+	else
+	if (lvl == 2 && scrap >= lv3) { GiveInventory("lvl", 1); ACS_NamedExecute("levelup", 0); }
+	else
+	if (lvl == 3 && scrap >= lv4) { GiveInventory("lvl", 1); ACS_NamedExecute("levelup", 0); }
+	else
+	if (lvl == 4 && scrap >= lv5) { GiveInventory("lvl", 1); ACS_NamedExecute("levelup", 0); }
+	
+	if (lvl == 2 && scrap <= lv2 - 1) { TakeInventory("lvl", 1); ACS_NamedExecute("leveldown", 0); }
+	else
+	if (lvl == 3 && scrap <= lv3 - 1) { TakeInventory("lvl", 1); ACS_NamedExecute("leveldown", 0); }
+	else
+	if (lvl == 4 && scrap <= lv4 - 1) { TakeInventory("lvl", 1); ACS_NamedExecute("leveldown", 0); }
+	else
+	if (lvl == 5 && scrap <= lv5 - 1) { TakeInventory("lvl", 1); ACS_NamedExecute("leveldown", 0); }
 }
 
-script "addbfg" (int scoregot)
+script "resetalt" ENTER
 {
-	bfgup += scoregot;
-	
-	for (int i; i < 1; i++)
-	{
-		if (bfgup >= 1000)
-		{
-			bfgup -= 1000;
-			Print(s:"you got bfg thing hooray");
-			GiveActorInventory(0, "bfgrounds", 1);
-			i = 0;
-			bfgcnt++;
-		}
-	}
-	
-	if (bfgcnt >= 10)
-	{
-		GiveActorInventory(0, "BFG9k", 1);
-	}
-}
-
-script "statclear" ENTER
-{
-	TakeActorInventory(0, "combocnt", 99);
+	TakeInventory("paltcooldown", 999);
 }

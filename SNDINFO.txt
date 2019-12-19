@@ -51,6 +51,9 @@ weapons/cgfire2 "sounds/weapons/cgun/cgfire2.ogg"
 weapons/cgfire3 "sounds/weapons/cgun/cgfire3.ogg"
 $random weapons/cgfire	{weapons/cgfire1 weapons/cgfire2 weapons/cgfire3}
 
+//RPG
+weapons/rpgfire	rpgfire
+
 //BFG9k
 weapons/bfgcharge "sounds/weapons/bfg9k/bfgcharge.ogg"
 weapons/bfgfire bfgfire
@@ -69,7 +72,16 @@ SSGUNER/idle	DSGPOACT
 //---------------------------------------
 //misc
 weapons/na	NOAMMO
+weapons/pkup	wpnpup
 misc/explode1	explode1
 misc/explode2	explode2
 misc/explode3	explode3
 $random misc/explode	{misc/explode1 misc/explode2 misc/explode3}
+
+misc/ammpkup	ampkup
+misc/armpkup	armpkup
+misc/ar2pkup	ar2pkup
+
+misc/lhp	lhp
+misc/mhp	mhp
+misc/shp	shp
