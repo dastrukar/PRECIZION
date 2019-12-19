@@ -13,6 +13,7 @@ Default
   DropItem "SAmoo";
   Decal "bhole";
   }
+  
 	States
 	{
 		Spawn:

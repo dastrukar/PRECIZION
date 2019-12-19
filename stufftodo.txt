@@ -1,6 +1,8 @@
 Currently working on:
--make a leveling system
+-make every ammo become scrap
 
+Already done!:
++Leveling system
 
 
 High priority:

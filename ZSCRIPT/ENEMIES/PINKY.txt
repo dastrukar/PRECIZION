@@ -5,3 +5,11 @@ Default
   DropItem "rdrop";
   }
 }
+
+class invisboi : Spectre replaces Spectre
+{
+Default
+  {
+  DropItem "rdrop";
+  }
+}

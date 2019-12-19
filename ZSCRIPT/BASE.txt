@@ -68,8 +68,12 @@ Default
 
 class GItem : CustomInventory //used for gun pickups
 {
-	int ctimer;
-	action void A_GiveGun(string give, string item)
+int ctimer;
+string giveitem;
+
+property Give : giveitem
+
+	action void A_GiveGun(class<Inventory> give, class<Inventory> item)
 	{
 		A_GiveInventory("agun", 1);
 		A_GiveInventory(give, 1); //gives the item that you actually need
@@ -81,6 +85,7 @@ Default
   Inventory.Amount 1;
   Inventory.MaxAmount 1;
   Inventory.PickupSound "misc/w_pkup";
+  GItem.Give "";
   +DONTGIB;
   }
   
@@ -100,6 +105,11 @@ Default
 			return Super.TryPickup(toucher);
 	}
   
+	States
+	{
+		Pickup:
+			TNT1 A 0 A_GiveGun(invoker.giveitem, invoker);
+	}
 }
 
 class Scrap : Inventory
