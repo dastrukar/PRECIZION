@@ -1,3 +1,4 @@
+# !! NOTE THIS BRANCH CONTAINS A HORRIBLY BROKEN, UNFINISHED, AND UNBALANCED VERSION OF THE MOD !!
 # PRECIZION
 a dumb gzdoom mod about throwing guns that i made
 also the shotgun tracer is hilariously broken
