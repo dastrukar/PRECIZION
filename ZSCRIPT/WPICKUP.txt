@@ -103,3 +103,20 @@ Default
 			stop;
 	}
 }
+
+class PRG : GItem replaces PlasmaRifle
+{
+Default
+  {
+  Inventory.PickupMessage "Picked up the Plasma Rifle.";
+  GItem.Give "RG";
+  GItem.Name "PRG";
+  }
+  
+	States
+	{
+		Spawn:
+			PLAS A -1;
+			stop;
+	}
+}

@@ -65,8 +65,8 @@ class PRocket : Ammo //rocketlauncher ammo
 {
 Default
   {
-  Inventory.Amount 6;
-  Inventory.MaxAmount 6;
+  Inventory.Amount 12;
+  Inventory.MaxAmount 12;
   }
 }
 

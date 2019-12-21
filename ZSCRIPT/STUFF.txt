@@ -28,7 +28,7 @@ Default
 	States
 	{
 		Spawn: //you spin me right round baby right round
-			HNDG ABCD 1;
+			FSMG ABCD 1;
 			loop;
 	}
 }

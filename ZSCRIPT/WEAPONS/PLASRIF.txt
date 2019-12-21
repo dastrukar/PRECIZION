@@ -6,6 +6,7 @@ Default
   Weapon.AmmoUse 1;
   Weapon.AmmoGive 4;
   Gun.Name "RG";
+  Gun.Pickup "PRG";
   }
   
 	States

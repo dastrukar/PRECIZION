@@ -5,36 +5,40 @@ Default
   {
   Inventory.PickupMessage "You got the BFG9000, fuck yeah.";
   Weapon.AmmoType1 "bfgrounds";
-  Weapon.AmmoType2 "bfgrounds";
   Weapon.AmmoUse1 10;
-  Weapon.AmmoUse2 1;
   Weapon.AmmoGive 100;
+  -WEAPON.AMMO_OPTIONAL;
   }
   
 	States
 	{
 		Ready:
-			BFGG A 1 A_WeaponReady();
+			BFGG A 1 A_WeaponReady(WRF_NOSWITCH);
 			Loop;
 		Deselect:
-			BFGG A 1 A_Lower();
+			BFGG A 1 A_TakeInventory("BFG9k");
 			Loop;
 		Select:
 			BFGG A 1 A_Raise();
 			Loop;
+			
 		Fire:
+			BFGG A 0;
+			BFGG A 0 A_JumpIfInventory("bfgrounds", 1, "FireNormal");
+		NFire:
+			BFGG A 0 A_PlaySound("weapons/na", CHAN_WEAPON);
+			BFGG A 1 Offset(0, 35);
+			BFGG A 1 Offset(0, 30);
+			goto Ready;
+			
+		FireCheck:
 			//BFGG A 20 A_BFGSound();
 			BFGG A 0 A_TakeInventory("bfgrounds", invoker.AmmoUse1);
 			BFGG B 5 A_GunFlash();
+			
+		FireNormal:
 			BFGG BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB 0 A_FireProjectile("bfgballs", frandom(-11, 11), false, 0, 0, 0, frandom(-11, 11));
 			BFGG B 5;
-			BFGG B 10;
-			Goto Ready;
-		AltFire:
-			//BFGG B 5 A_GunFlash();
-			BFGG A 0 A_TakeInventory("bfgrounds", invoker.AmmoUse2);
-			BFGG BBBBBBBBBB 1 A_FireProjectile("bfgballs", frandom(-11, 11), false, 0, 0, 0, frandom(-11, 11));
-			BFGG B 5 A_ReFire();
 			BFGG B 10;
 			Goto Ready;
 			

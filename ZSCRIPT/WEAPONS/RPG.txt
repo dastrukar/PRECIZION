@@ -4,10 +4,11 @@ class RPG : Gun
 Default
   {
   Weapon.AmmoType "PRocket";
-  Weapon.AmmoGive 6;
+  Weapon.AmmoGive 12;
   Weapon.AmmoUse 1;
   Inventory.PickupMessage "Got the RPG.";
   Gun.Name "RPG";
+  Gun.Pickup "PRPG";
   }
   
 	States
@@ -27,17 +28,28 @@ Default
 			loop;
 			
 		Fire:
+			TNT1 A 0;
+			TNT1 A 0 A_JumpIfInventory("PRocket", 1, "FireCheck");
+		NFire:
+			MISG B 0 A_PlaySound("weapons/na", CHAN_WEAPON);
+			MISG B 1 Offset(0, 35);
+			MISG B 1 Offset(0, 30);
+			goto Ready;
+			
+		FireCheck:
+			MISG B 0 A_TakeInventory("PRocket", 1);
 			MISG B 8 A_GunFlash();
 			MISG B 0 A_PlaySound("weapons/rpgfire", CHAN_WEAPON);
 			MISG B 0 A_Quake(6, 3, 0, 64, "");
-			MISG B 0 A_FireProjectile("rpgocket", -10, false, -4, 0);
-			MISG B 0 A_FireProjectile("rpgocket", 10, false, 4, 0);
-			MISG B 0 A_FireProjectile("rpgocket", -5, false, -2, 4);
-			MISG B 0 A_FireProjectile("rpgocket", 5, false, 2, 4);
-			MISG B 0 A_FireProjectile("rpgocket", -5, false, -2, -4);
-			MISG B 0 A_FireProjectile("rpgocket", 5, false, 2, -4);
-			MISG B 0 A_FireProjectile("rpgocket", 0, false, 0, 8);
-			MISG B 0 A_FireProjectile("rpgocket", 0, false, 0, -8);
+			TNT1 A 0 A_JumpIfInventory("lvl", 2, "FireS1");
+			
+		FireNormal:
+			MISG B 0 A_FireProjectile("rpgocket", -3, false, 0, 2);
+			MISG B 0 A_FireProjectile("rpgocket", 3, false, 0, 2);
+			MISG B 0 A_FireProjectile("rpgocket", -3, false, 0, -2);
+			MISG B 0 A_FireProjectile("rpgocket", 3, false, 0, -2);
+			
+		FireEnd:
 			MISG B 1 Offset(0, 50);
 			MISG B 2 Offset(0, 70);
 			MISG B 1 Offset(0, 65);
@@ -51,6 +63,25 @@ Default
 			MISG B 4;
 			MISG B 0 A_ReFire();
 			goto Ready;
+			
+		//special
+		FireS1:
+			MISG B 0 A_FireProjectile("rpgocket", -5, false, 0, 4);
+			MISG B 0 A_FireProjectile("rpgocket", 5, false, 0, 4);
+			MISG B 0 A_FireProjectile("rpgocket", -5, false, 0, -4);
+			MISG B 0 A_FireProjectile("rpgocket", 5, false, 0, -4);
+			MISG B 0 A_FireProjectile("rpgocket", 0, false, 0, 0);
+			goto FireEnd;	
+		FireS5:
+			MISG B 0 A_FireProjectile("rpgocket", -10, false, 0, 0);
+			MISG B 0 A_FireProjectile("rpgocket", 10, false, 0, 0);
+			MISG B 0 A_FireProjectile("rpgocket", -5, false, 0, 4);
+			MISG B 0 A_FireProjectile("rpgocket", 5, false, 0, 4);
+			MISG B 0 A_FireProjectile("rpgocket", -5, false, 0, -4);
+			MISG B 0 A_FireProjectile("rpgocket", 5, false, 0, -4);
+			MISG B 0 A_FireProjectile("rpgocket", 0, false, 0, 8);
+			MISG B 0 A_FireProjectile("rpgocket", 0, false, 0, -8);
+			goto FireEnd;
 			
 		Flash:
 			MISF A 3 Bright A_Light1();

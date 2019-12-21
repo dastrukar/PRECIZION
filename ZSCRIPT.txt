@@ -44,7 +44,7 @@ Default
   Player.StartItem "PClip", 999;
   Player.StartItem "lvl", 1;
   Player.WeaponSlot 1, "pp";
-  Player.WeaponSlot 2, "fp", "sg", "SMG", "SSG", "cg", "RPG";
+  Player.WeaponSlot 2, "fp", "sg", "SMG", "SSG", "cg", "RPG", "RG";
   Player.WeaponSlot 3, "BFG9k";
   Player.WeaponSlot 4, "";
   Player.WeaponSlot 5, "";

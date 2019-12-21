@@ -1,7 +1,7 @@
 class pp : Gun //changed to default weapon due to balancing issues
 {
 
-action void A_PP(int npitch, int intensity=2, int shaketime=2, string wsound="weapons/pfire", double vol=1.0)
+action void A_PP(int npitch, int intensity=2, int shaketime=2, string wsound="weapons/pfire", double vol=0.5)
 {
 	A_Quake(2, 2, 0, 32, "");
 	A_PlaySound(wsound, CHAN_WEAPON, vol);
@@ -56,7 +56,7 @@ Default
 			
 		//Primary Fire states
 		Fire:
-			//Check if special ammo exists
+			//Check level
 			TNT1 A 0;
 			TNT1 A 0 A_JumpIfInventory("lvl", 3, "FireS2");
 			TNT1 A 0 A_JumpIfInventory("lvl", 2, "FireS1");
