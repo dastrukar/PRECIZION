@@ -9,6 +9,7 @@ Default
   Inventory.PickupMessage "Got the RPG.";
   Gun.Name "RPG";
   Gun.Pickup "PRPG";
+  Gun.Throw "flyrpg";
   }
   
 	States

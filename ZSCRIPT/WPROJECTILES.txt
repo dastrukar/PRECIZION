@@ -8,6 +8,7 @@ Default
   Height 6;
   Damage 30;
   Scale 0.5;
+  DamageType "gun";
   DeathSound "skeleton/melee";
   Obituary "%o tried to catch %k's pea shooter with their face.";
   +BLOODSPLATTER
@@ -26,11 +27,13 @@ Default
 	
 }
 
-class flysmg : flyingp //flying smg
+//Flying SMG
+class flysmg : flyingp
 {
 }
 
-class flyings : flyingp //flying shotgun
+//Flying Shotgun
+class flyings : flyingp
 {
 Default
   {
@@ -53,12 +56,14 @@ Default
 	}
 }
 
-class flyssg : flyings //flying supershotgun (please add proper spinning sprite work thanks)
+//Flying SSG
+class flyssg : flyings
 {
 Default
   {
   Damage 80;
   }
+  
 	States
 	{
 		Spawn:
@@ -72,12 +77,14 @@ Default
 	}
 }
 
+//Flying Chaingun
 class flycg : flyingp
 {
 Default
   {
   Damage 100;
   }
+  
 	States
 	{
 		Spawn:
@@ -87,6 +94,26 @@ Default
 		Death:
 			"####" "#" 0 A_SpawnDebris("fcgun");
 			"####" "##################################################" 0 A_SpawnDebris("fbullet");
+			stop;
+	}
+}
+
+class flyrpg : flyingp
+{
+Default
+  {
+  Damage 100;
+  }
+  
+	States
+	{
+		Spawn:
+			FRPG ABCD 1;
+			loop;
+			
+		Death:
+			"####" "#" 0 A_Explode();
+			"####" "#" 0 A_SpawnDebris("frpg");
 			stop;
 	}
 }

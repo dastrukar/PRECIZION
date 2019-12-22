@@ -150,6 +150,21 @@ int scorenum;
 			DrawString(numwrite, FormatNumber(ammotype1.Amount, 0), ammnumpos, DI_TEXT_ALIGN_RIGHT);
 		}
 		
+		DrawImage("GRAPHICS/NHUD/wpnmh1.png", hudamm);
+		
+		if	(CPlayer.HasWeaponsInSlot(2))
+		{
+			DrawImage("GRAPHICS/NHUD/wpnmh2.png", hudamm);
+		}
+		
+		if	(ammotype2 != null)
+		{
+			DrawImage("GRAPHICS/NHUD/wpnms1.png", hudamm);
+		} else {
+			DrawImage("GRAPHICS/NHUD/wpnms2.png", hudamm);
+		}
+		
+		
 		//-----------------------------------------------------------------------
 		//DrawLevelStuff
 		let level = GetAmount("lvl");

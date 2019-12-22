@@ -10,7 +10,8 @@ Default
 //===============================================================
 // Spinning weapon props
 //-------------------------------------------
-class fpstl : Actor //pistol
+//pistol
+class fpstl : Actor 
 {
 Default
   {
@@ -33,7 +34,8 @@ Default
 	}
 }
 
-class fshtg : fpstl //shotgun
+//shotgun
+class fshtg : fpstl 
 {
 Default
   {
@@ -49,7 +51,8 @@ Default
 	}
 }
 
-class fsshg : fshtg //SSG
+//SSG
+class fsshg : fshtg 
 {
 	States
 	{
@@ -59,7 +62,8 @@ class fsshg : fshtg //SSG
 	}
 }
 
-class fcgun : fshtg //chaingun
+//chaingun
+class fcgun : fshtg 
 {
 Default
   {
@@ -75,11 +79,23 @@ Default
 	}
 }
 
+//rocketlauncher
+class frpg : fcgun
+{
+	States
+	{
+		Spawn:
+			FRPG ABCD 1;
+			loop;
+	}
+}
+
 
 //===============================================================
 // Casings that deal damage
 //-------------------------------------------
-class fshell : fpstl //shell
+//shell
+class fshell : fpstl 
 {
 Default
   {
@@ -97,7 +113,9 @@ Default
 			loop;
 	}
 }
-class fbullet : fpstl //bullet casings
+
+//bullet casings
+class fbullet : fpstl 
 {
 Default
   {

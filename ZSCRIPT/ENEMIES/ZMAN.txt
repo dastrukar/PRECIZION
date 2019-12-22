@@ -1,9 +1,5 @@
 class ZS : Actor replaces ZombieMan
-{
-Default
-  {
-  }
-  
+{ 
 	States
 	{
 		Spawn:
@@ -20,6 +16,13 @@ Default
 
 class ZMan : ZombieMan
 {
+override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod, int flags, double angle)
+	{
+		if (mod == "gun") { A_SpawnDebris("StimPk"); A_SpawnDebris("ArmBonus"); }
+		
+		return Super.DamageMobj(inflictor, source, damage, mod, flags, angle);	
+	}
+
 Default
   {
   DropItem "PAmo";

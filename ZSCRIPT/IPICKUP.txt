@@ -5,6 +5,7 @@ class HPBonus : HealthBonus replaces HealthBonus
 {
 Default
   {
+  Health 1;
   Inventory.PickupSound "misc/shp";
   Inventory.Amount 2;
   }
@@ -14,6 +15,7 @@ class StimPk : Stimpack replaces Stimpack
 {
 Default
   {
+  Health 1;
   Inventory.PickupSound "misc/mhp";
   }
 }
@@ -22,6 +24,7 @@ class MedKit : Medikit replaces Medikit
 {
 Default
   {
+  Health 1;
   Inventory.PickupSound "misc/lhp";
   }
 }
@@ -34,6 +37,7 @@ class ArmBonus : ArmorBonus replaces ArmorBonus
 {
 Default
   {
+  Health 1;
   Inventory.PickupSound "misc/armpkup";
   Armor.SaveAmount 2;
   }
@@ -43,6 +47,7 @@ class SecurityArmor : GreenArmor replaces GreenArmor
 {
 Default
   {
+  Health 1;
   Inventory.PickupSound "misc/ar2pkup";
   }
 }
@@ -51,6 +56,7 @@ class CombatArmor : BlueArmor replaces BlueArmor
 {
 Default
   {
+  Health 1;
   Inventory.PickupSound "misc/ar2pkup";
   }
 }
