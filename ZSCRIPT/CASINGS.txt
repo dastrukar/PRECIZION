@@ -1,0 +1,42 @@
+//===============================================================
+// Casings that deal damage
+//-------------------------------------------
+//shell
+class fshell : fpstl 
+{
+Default
+  {
+  Radius 3;
+  Height 6;
+  Damage 10;
+  DamageType "casing";
+  +NOEXTREMEDEATH;
+  }
+  
+	States
+	{
+		Spawn:
+			SHLL ABCD 1;
+			loop;
+	}
+}
+
+//bullet casings
+class fbullet : fpstl 
+{
+Default
+  {
+  Radius 2;
+  Height 4;
+  Damage 5;
+  DamageType "casing";
+  +NOEXTREMEDEATH;
+  }
+  
+	States
+	{
+		Spawn:
+			CAS2 ABCDEFGH 1;
+			loop;
+	}
+}

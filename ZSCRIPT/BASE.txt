@@ -1,4 +1,5 @@
-class Gun : Weapon //used for most guns
+//used for most guns
+class Gun : Weapon 
 {
 string pckup;
 string throw;
@@ -66,7 +67,8 @@ Default
 	}
 }
 
-class GItem : CustomInventory //used for gun pickups
+//used for gun pickups
+class GItem : CustomInventory 
 {
 int ctimer;
 string giveitem;
@@ -115,6 +117,7 @@ Default
 	}
 }
 
+//Scrap ;]
 class Scrap : Inventory
 {
 Default
@@ -124,6 +127,7 @@ Default
   }
 }
 
+//ScrapItem
 class SItem : CustomInventory
 {
 int ScrapAmt;

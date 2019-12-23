@@ -59,6 +59,13 @@ Default
   {
   Scale 1.25;
   }
+  
+	States
+	{
+		Spawn:
+			BBLT A 1 A_FadeOut(0.20, FTF_REMOVE);
+			loop;
+	}
 }
 
 class ebullet : bullettracer

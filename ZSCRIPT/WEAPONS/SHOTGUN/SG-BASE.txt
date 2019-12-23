@@ -1,0 +1,42 @@
+//note to self: add new sfx ;]
+class sg : Gun
+{
+Default
+  {
+  Decal "bhole";
+  Weapon.AmmoType "PShell";
+  Weapon.AmmoUse 0;
+  Weapon.AmmoGive 8;
+  Weapon.UpSound "weapons/sequip";
+  Inventory.Icon "SHOTA0";
+  Inventory.PickupMessage "Got the Shotgun.";
+  Obituary "%o ate a faceful of lead from %k's Shotgun.";
+  +WEAPON.NOAUTOFIRE;
+  +NOEXTREMEDEATH;
+  Gun.Pickup "PShotgun";
+  Gun.Throw "flyings";
+  Gun.Name "sg";
+  }
+  
+	States
+	{
+		Ready:
+			SHTG A 1 A_WeaponReady();
+			loop;
+		
+		Select:
+			SHTG A 0 Offset(-20, 50);
+		Select1:
+			SHTG A 1 A_Raise(10);
+			loop;
+			
+		DeSelect:
+			SHTG A 1 A_Lower(10);
+			loop;
+			
+		Flash:
+			SHTF A 1 Bright A_Light(5);
+			SHTF B 1 Bright A_Light(10);
+			goto LightDone;
+	}
+}

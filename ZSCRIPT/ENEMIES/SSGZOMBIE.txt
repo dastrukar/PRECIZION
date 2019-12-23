@@ -1,5 +1,5 @@
 //original code made by Rhoq, Aerial, Ghastly
-class SSGMan : ShotgunGuy
+class SSGMan : SMan
 {
 Default
   {

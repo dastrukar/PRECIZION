@@ -1,12 +1,5 @@
 class SM : Actor replaces ShotgunGuy
 {
-override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod, int flags, double angle)
-	{
-		if (mod == "gun") { A_SpawnDebris("StimPk"); A_SpawnDebris("ArmBonus"); }
-		
-		return Super.DamageMobj(inflictor, source, damage, mod, flags, angle);	
-	}
-
 	States
 	{
 		Spawn:
@@ -23,6 +16,13 @@ override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod, int
 
 class SMan : ShotgunGuy
 {
+override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod, int flags, double angle)
+	{
+		if (mod == "gun") { A_SpawnDebris("StimPk"); A_SpawnDebris("ArmBonus"); }
+		
+		return Super.DamageMobj(inflictor, source, damage, mod, flags, angle);	
+	}
+	
 Default
   {
   DropItem "SAmo";

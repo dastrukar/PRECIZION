@@ -1,0 +1,166 @@
+//===============================================================
+// Ammo spawner things
+//-------------------------------------------
+
+//Replaces Clip
+class PAmo : Actor replaces Clip 
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("PAmmo");
+			stop;
+		Spawn2:
+			TNT1 A 0 A_SpawnItemEx("PSMG");
+			stop;
+	}
+}
+
+//Replaces Shell
+class SAmmoo : Actor replaces Shell 
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		//will spawn as a shell/shotgun/ssg
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("SAmo");
+			stop;
+		Spawn2:
+			TNT1 A 0 A_SpawnItemEx("SAmoo");
+			stop;
+	}
+}
+
+//Replaces Box Of Ammo
+class BAmo : Actor replaces ClipBox
+{
+Default
+  {
+  }
+  
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("BAmmo");
+			stop;
+		Spawn2:
+			goto Spawn1;
+			TNT1 A 0 A_SpawnItemEx("PChain");
+			stop;
+	}
+}
+
+//Replaces Box Of Shells
+class BSAm : Actor replaces ShellBox
+{
+Default
+  {
+  }
+  
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("BSAmm");
+			stop;
+		Spawn2:
+			TNT1 A 0 A_SpawnItemEx("PSSG");
+			stop;
+	}
+}
+
+//Replaces rockets
+class RK : Actor replaces RocketAmmo
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("Rock");
+			stop;
+		Spawn2:
+			TNT1 A 0 A_SpawnItemEx("PRPG");
+			stop;
+	}
+}
+
+//Replaces Box of Rockets
+class BRK : Actor replaces RocketBox
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("BRock");
+			stop;
+		Spawn2:
+			TNT1 A 0 A_SpawnItemEx("PRPG");
+			stop;
+			}
+}
+
+//Replaces Cell
+class EC : Actor replaces Cell
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("ECell");
+			stop;
+		Spawn2:
+			TNT1 A 0 A_SpawnItemEx("PRG");
+			stop;
+	}
+}
+
+//Replaces Energypack
+class EP : Actor replaces EnergyPack
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("EPack");
+			stop;
+		Spawn2:
+			TNT1 A 0 A_SpawnItemEx("PRG");
+			stop;
+	}
+}
+
+//Replaces backpack
+class BagK : Actor replaces Backpack
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("Bag");
+			stop;
+		Spawn2:
+			TNT1 A 0 A_SpawnItemEx("BFG9k");
+			stop;
+	}
+}

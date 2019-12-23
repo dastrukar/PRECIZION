@@ -3,18 +3,41 @@ version "4.0.0"
 //add some details later and sort out some shit
 //important stuff
 #include "ZSCRIPT/BASE.txt"
-//---------------------------------------
+
+//=======================================
 //Weapons
-#include "ZSCRIPT/WEAPONS/PISTOL.txt"
+//--------------------------
+//Pistol
+#include "ZSCRIPT/WEAPONS/PISTOL/PISTOL-BASE.txt"
+#include "ZSCRIPT/WEAPONS/PISTOL/PISTOL-FIRE.txt"
+#include "ZSCRIPT/WEAPONS/PISTOL/PISTOL-SPC.txt"
+
+//SMG
 #include "ZSCRIPT/WEAPONS/SMG.txt"
+
+//Shotgun
 #include "ZSCRIPT/WEAPONS/SHOTGUN.txt"
+#include "ZSCRIPT/WEAPONS/SHOTGUN/SG-BASE.txt"
+#include "ZSCRIPT/WEAPONS/SHOTGUN/SG-FIRE.txt"
+
+//SSG
 #include "ZSCRIPT/WEAPONS/SSG.txt"
+
+//Chaingun
 #include "ZSCRIPT/WEAPONS/CHAINGUN.txt"
+
+//Rocket Launcher
 #include "ZSCRIPT/WEAPONS/RPG.txt"
+
+//Plasma Rifle
 #include "ZSCRIPT/WEAPONS/PLASRIF.txt"
+
+//BFG
 #include "ZSCRIPT/WEAPONS/BFG.txt"
-//---------------------------------------
+
+//=======================================
 //Enemies
+//--------------------------
 #include "ZSCRIPT/ENEMIES/ZMAN.txt"
 #include "ZSCRIPT/ENEMIES/SMAN.txt"
 #include "ZSCRIPT/ENEMIES/IMP.txt"
@@ -22,18 +45,29 @@ version "4.0.0"
 #include "ZSCRIPT/ENEMIES/SSGZOMBIE.txt"
 #include "ZSCRIPT/ENEMIES/PINKY.txt"
 #include "ZSCRIPT/ENEMIES/CGMAN.txt"
-//---------------------------------------
+//=======================================
 //Other
+//--------------------------
 #include "ZSCRIPT/AMMO.txt"
-#include "ZSCRIPT/STUFF.txt"
+
+#include "ZSCRIPT/SPEEN.txt"
+#include "ZSCRIPT/CASINGS.txt"
+
 #include "ZSCRIPT/WPROJECTILES.txt"
+
+//pickups
 #include "ZSCRIPT/WPICKUP.txt"
 #include "ZSCRIPT/APICKUP.txt"
 #include "ZSCRIPT/IPICKUP.txt"
-#include "ZSCRIPT/STBAR.txt"
+
+//item spawners
+#include "ZSCRIPT/ASPAWN.txt"
+#include "ZSCRIPT/ESPAWN.txt"
+
 #include "ZSCRIPT/TRACER.txt"
+#include "ZSCRIPT/STBAR.txt"
 #include "ZSCRIPT/ENEMIES/BARREL.txt"
-//---------------------------------------
+//=======================================
 
 
 class rgw : DoomPlayer replaces DoomPlayer
