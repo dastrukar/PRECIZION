@@ -1,0 +1,33 @@
+class SMG : Gun
+{
+Default
+  {
+  Inventory.PickupMessage "You got the SMG!";
+  Weapon.Ammogive 30;
+  Weapon.Ammouse 0;
+  Weapon.Ammotype "SClip";
+  Weapon.UpSound "weapons/smgdep";
+  Inventory.Icon "SBMGA0";
+  Decal "bhole";
+  Obituary "%o got pelted by %k's SMG.";
+  Gun.Pickup "PSMG";
+  Gun.Throw "flyingp";
+  Gun.Name "SMG";
+  }
+	States
+	{
+		Ready:
+			SMG1 A 1 A_WeaponReady();
+			loop;
+			
+		Select:
+			SMG1 A 0 Offset(-20, 50);
+		Select1:
+			SMG1 A 1 A_Raise(10);
+			loop;
+			
+		DeSelect:
+			SMG1 A 1 A_Lower(10);
+			loop;
+	}
+}

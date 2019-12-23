@@ -13,10 +13,10 @@ version "4.0.0"
 #include "ZSCRIPT/WEAPONS/PISTOL/PISTOL-SPC.txt"
 
 //SMG
-#include "ZSCRIPT/WEAPONS/SMG.txt"
+#include "ZSCRIPT/WEAPONS/SMG/SMG-BASE.txt"
+#include "ZSCRIPT/WEAPONS/SMG/SMG-FIRE.txt"
 
 //Shotgun
-#include "ZSCRIPT/WEAPONS/SHOTGUN.txt"
 #include "ZSCRIPT/WEAPONS/SHOTGUN/SG-BASE.txt"
 #include "ZSCRIPT/WEAPONS/SHOTGUN/SG-FIRE.txt"
 

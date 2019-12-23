@@ -5,7 +5,7 @@ extend class pp
 		//AltFire states	
 		AltFire:
 			TNT1 A 0;
-			TNT1 A 0 A_JumpIfInventory("paltcooldown", 0, "AltDryFire");
+			TNT1 A 0 A_JumpIfInventory("paltcooldown", 1, "AltDryFire");
 			TNT1 A 0 A_JumpIfInventory("lvl", 3, "AF2");
 		AF1:
 			PISG B 0 A_AltFire();
