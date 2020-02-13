@@ -1,41 +1,21 @@
-class SSG : Gun
+extend class SSG
 {
-Default
-  {
-  Weapon.AmmoUse 1;
-  Weapon.AmmoGive 2;
-  Weapon.AmmoType "PSShel";
-  Inventory.Icon "SGN2A0";
-  +WEAPON.NOAUTOFIRE;
-  -NOEXTREMEDEATH
-  Gun.Pickup "PSSG";
-  Gun.Throw "flyssg";
-  Gun.Name "SSG";
-  }
 	States
 	{
-		Ready:
-			SHT2 A 1 A_WeaponReady();
-			loop;
-		
-		Select:
-			SHT2 A 0 Offset(-20, 50);
-		Select1:
-			SHT2 A 1 A_Raise(10);
-			loop;
-			
-		Deselect:
-			SHT2 A 1 A_Lower(10);
-			loop;
-			
 		Fire:
-			SHT2 A 0 A_JumpIfInventory("PSShel", 1, "Fire1");
+			SHT2 A 0 A_JumpIfInventory("PSShel", 1, "FireCheck");
+		NFire:
 			"####" "#" 0 A_PlaySound("weapons/na", CHAN_WEAPON);
 			"####" "#" 1 Offset (0, 40) A_AllowThrow(true);
 			"####" "#" 1 Offset (0, 35) A_AllowThrow(true);
 			goto Ready;
-		Fire1:
+			
+		FireCheck:
+			
+		FireNormal:
 			SHT2 A 0 A_FireBullets(11.2, 7.1, 10, 12, "BulletPuff", 1, 0, "bullettracer", 4);
+			
+		FireEnd:
 			"####" "#" 0 A_PlaySound("weapons/ssfire", CHAN_WEAPON, 2.5);
 			"####" "#" 0 A_SetPitch(pitch - 5);
 			"####" "#" 0 A_Quake(10, 3, 0, 32, "");
@@ -54,10 +34,5 @@ Default
 			"####" "#" 1 Offset(0, 40) A_AllowThrow(true);
 			"####" "#" 1 Offset(0, 35) A_AllowThrow(true);
 			goto Ready;
-			
-		Flash:
-			SHT2 I 1 Bright A_Light1();
-			SHT2 J 2 Bright A_Light2();
-			goto LightDone;
 	}
 }

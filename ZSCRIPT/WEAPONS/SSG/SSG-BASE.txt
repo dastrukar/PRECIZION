@@ -1,0 +1,36 @@
+class SSG : Gun
+{
+Default
+  {
+  Weapon.AmmoUse 1;
+  Weapon.AmmoGive 2;
+  Weapon.AmmoType "PSShel";
+  Inventory.Icon "SGN2A0";
+  +WEAPON.NOAUTOFIRE;
+  -NOEXTREMEDEATH
+  Gun.Pickup "PSSG";
+  Gun.Throw "flyssg";
+  Gun.Name "SSG";
+  }
+	States
+	{
+		Ready:
+			SHT2 A 1 A_WeaponReady();
+			loop;
+		
+		Select:
+			SHT2 A 0 Offset(-20, 50);
+		Select1:
+			SHT2 A 1 A_Raise(10);
+			loop;
+			
+		Deselect:
+			SHT2 A 1 A_Lower(10);
+			loop;
+
+		Flash:
+			SHT2 I 1 Bright A_Light1();
+			SHT2 J 2 Bright A_Light2();
+			goto LightDone;
+	}
+}

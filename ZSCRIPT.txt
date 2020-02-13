@@ -21,10 +21,12 @@ version "4.0.0"
 #include "ZSCRIPT/WEAPONS/SHOTGUN/SG-FIRE.txt"
 
 //SSG
-#include "ZSCRIPT/WEAPONS/SSG.txt"
+#include "ZSCRIPT/WEAPONS/SSG/SSG-BASE.txt"
+#include "ZSCRIPT/WEAPONS/SSG/SSG-FIRE.txt"
 
 //Chaingun
-#include "ZSCRIPT/WEAPONS/CHAINGUN.txt"
+#include "ZSCRIPT/WEAPONS/CHAINGUN/CG-BASE.txt"
+#include "ZSCRIPT/WEAPONS/CHAINGUN/CG-FIRE.txt"
 
 //Rocket Launcher
 #include "ZSCRIPT/WEAPONS/RPG.txt"
@@ -45,6 +47,7 @@ version "4.0.0"
 #include "ZSCRIPT/ENEMIES/SSGZOMBIE.txt"
 #include "ZSCRIPT/ENEMIES/PINKY.txt"
 #include "ZSCRIPT/ENEMIES/CGMAN.txt"
+#include "ZSCRIPT/ENEMIES/GHOST.txt"
 //=======================================
 //Other
 //--------------------------
@@ -54,6 +57,8 @@ version "4.0.0"
 #include "ZSCRIPT/CASINGS.txt"
 
 #include "ZSCRIPT/WPROJECTILES.txt"
+
+#include "ZSCRIPT/LVLUP.txt"
 
 //pickups
 #include "ZSCRIPT/WPICKUP.txt"
@@ -86,30 +91,6 @@ Default
   Player.WeaponSlot 7, "";
   DamageFactor "casing", 0.0;
   }
-  
-	override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod, int flags, double angle)
-	{
-		int dmgpenalty = damage;
-		int armorsave = ACS_NamedExecuteWithResult("getarmor");
-		
-		if (mod == "casing") { dmgpenalty = 0; }
-		
-		if (CountInv("BasicArmor")) { dmgpenalty -= dmgpenalty * armorsave / 100;}
-		
-		TakeInventory("Scrap", dmgpenalty);
-		
-		return Super.DamageMobj(inflictor, source, damage, mod, flags, angle);	
-	}
-	
-	override void Tick()
-	{
-		Super.Tick();
-		
-		TakeInventory("paltcooldown", 1);
-		
-		//level up if player has certain amount of scrap
-		ACS_NamedExecute("chklvl");
-	}
 }
 
 class agun : Inventory //picked up when picking up a gun and makes the player not be able to pick up another gun until the current one is discarded

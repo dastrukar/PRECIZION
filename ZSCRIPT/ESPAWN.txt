@@ -2,6 +2,23 @@
 // Enemy spawner drop things
 //-------------------------------------------
 
+//Imp
+class adrop : Actor
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2");
+		Spawn1:
+			TNT1 A 0 A_SpawnItemEx("PAmmo");
+			stop;
+		Spawn2:
+			TNT1 A 0 A_SpawnItemEx("SAmmo");
+			stop;
+	}
+}
+
 //ShotgunGuy
 class SAmo : Actor
 {

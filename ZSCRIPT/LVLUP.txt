@@ -1,0 +1,27 @@
+extend class rgw
+{
+	override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod, int flags, double angle)
+	{
+		//variables
+		int dmgpenalty = damage;
+		int armorsave = ACS_NamedExecuteWithResult("getarmor");
+		
+		if (mod == "casing") { dmgpenalty = 0; }
+		
+		if (CountInv("BasicArmor")) { dmgpenalty -= dmgpenalty * armorsave / 100;}
+		
+		TakeInventory("Scrap", dmgpenalty);
+		
+		return Super.DamageMobj(inflictor, source, damage, mod, flags, angle);	
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		
+		TakeInventory("paltcooldown", 1);
+		
+		//level up if player has certain amount of scrap
+		ACS_NamedExecute("chklvl");
+	}
+}
