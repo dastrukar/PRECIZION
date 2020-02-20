@@ -1,3 +1,6 @@
+# All good things must come to an end.
+R.I.P 2 years of work.
+
 # PRECIZION
 a dumb gzdoom mod about throwing guns that i made
 also the shotgun tracer is hilariously broken
