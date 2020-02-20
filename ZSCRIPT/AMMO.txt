@@ -1,0 +1,5 @@
+class shelly : Ammo {
+Default {
+  Inventory.Amount 1;
+  Inventory.MaxAmount 9;
+}

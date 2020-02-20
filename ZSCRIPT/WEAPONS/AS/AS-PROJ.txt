@@ -1,0 +1,38 @@
+class flyingass : Actor {
+Default {
+  Projectile;
+  }
+  
+  States {
+	Spawn:
+		SGUN ABCD 1;
+		loop;
+		
+	Death:
+	Crash:
+		SGUN A 0 A_SpawnDebris("fass")
+		stop;
+		
+	XDeath:
+		SGUN A 0 A_SpawnDebris("fass")
+  }
+}
+
+class fass : Actor {
+Default {
+  Health 1
+  +DOOMBOUNCE;
+  -NOGRAVITY;
+  +NOBLOCKMAP;
+  +NOTELEPORT;
+  }
+  
+  States {
+	Spawn:
+		SGUN ABCD 1;
+		loop;
+		
+	Death:
+		
+  }
+}

@@ -1,0 +1,5 @@
+#include "WEAPONS/AS/AS-BASE.txt"
+#include "WEAPONS/AS/AS-PROJ.txt"
+
+//Ammooo
+#include "AMMO.txt"

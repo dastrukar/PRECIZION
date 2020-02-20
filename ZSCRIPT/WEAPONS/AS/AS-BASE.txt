@@ -1,0 +1,10 @@
+class AS : Gun {
+Default {
+  Weapon.AmmoType "shelly";
+  Weapon.AmmoUse 0;
+  }
+  
+	States {
+		
+	}
+}

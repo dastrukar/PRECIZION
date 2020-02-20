@@ -1,0 +1,12 @@
+class Gun : Weapon {
+
+action A_TossGun() {
+	//fire a projectile that resembles gun
+	//remove gun that the player is holding
+}
+
+Default {
+  
+  }
+  
+}
