@@ -1,0 +1,7 @@
+make it like the old version of precizion
+add headshots for addiction reasons
+make every enemy fire projectiles
+pistol should have unlimited ammo but be weak as shit (this is where headshots come in)
+you can only carry one weapon at a time (excluding the pistol)
+no leveling system this time
+make it more faster paced (perhaps a scoring system with multipliers?)
